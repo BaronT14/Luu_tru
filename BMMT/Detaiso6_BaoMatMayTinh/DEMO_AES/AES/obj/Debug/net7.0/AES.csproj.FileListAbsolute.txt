@@ -1,0 +1,14 @@
+E:\workspace\BMMT\Đề tài 6\AES\bin\Debug\net7.0\AES.exe
+E:\workspace\BMMT\Đề tài 6\AES\bin\Debug\net7.0\AES.deps.json
+E:\workspace\BMMT\Đề tài 6\AES\bin\Debug\net7.0\AES.runtimeconfig.json
+E:\workspace\BMMT\Đề tài 6\AES\bin\Debug\net7.0\AES.dll
+E:\workspace\BMMT\Đề tài 6\AES\bin\Debug\net7.0\AES.pdb
+E:\workspace\BMMT\Đề tài 6\AES\obj\Debug\net7.0\AES.GeneratedMSBuildEditorConfig.editorconfig
+E:\workspace\BMMT\Đề tài 6\AES\obj\Debug\net7.0\AES.AssemblyInfoInputs.cache
+E:\workspace\BMMT\Đề tài 6\AES\obj\Debug\net7.0\AES.AssemblyInfo.cs
+E:\workspace\BMMT\Đề tài 6\AES\obj\Debug\net7.0\AES.csproj.CoreCompileInputs.cache
+E:\workspace\BMMT\Đề tài 6\AES\obj\Debug\net7.0\AES.dll
+E:\workspace\BMMT\Đề tài 6\AES\obj\Debug\net7.0\refint\AES.dll
+E:\workspace\BMMT\Đề tài 6\AES\obj\Debug\net7.0\AES.pdb
+E:\workspace\BMMT\Đề tài 6\AES\obj\Debug\net7.0\AES.genruntimeconfig.cache
+E:\workspace\BMMT\Đề tài 6\AES\obj\Debug\net7.0\ref\AES.dll

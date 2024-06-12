@@ -1,0 +1,14 @@
+E:\workspace\OOP\QLSV\DSSV\DSSV\bin\Debug\net6.0\DSSV.exe
+E:\workspace\OOP\QLSV\DSSV\DSSV\bin\Debug\net6.0\DSSV.deps.json
+E:\workspace\OOP\QLSV\DSSV\DSSV\bin\Debug\net6.0\DSSV.runtimeconfig.json
+E:\workspace\OOP\QLSV\DSSV\DSSV\bin\Debug\net6.0\DSSV.dll
+E:\workspace\OOP\QLSV\DSSV\DSSV\bin\Debug\net6.0\DSSV.pdb
+E:\workspace\OOP\QLSV\DSSV\DSSV\obj\Debug\net6.0\DSSV.GeneratedMSBuildEditorConfig.editorconfig
+E:\workspace\OOP\QLSV\DSSV\DSSV\obj\Debug\net6.0\DSSV.AssemblyInfoInputs.cache
+E:\workspace\OOP\QLSV\DSSV\DSSV\obj\Debug\net6.0\DSSV.AssemblyInfo.cs
+E:\workspace\OOP\QLSV\DSSV\DSSV\obj\Debug\net6.0\DSSV.csproj.CoreCompileInputs.cache
+E:\workspace\OOP\QLSV\DSSV\DSSV\obj\Debug\net6.0\DSSV.dll
+E:\workspace\OOP\QLSV\DSSV\DSSV\obj\Debug\net6.0\refint\DSSV.dll
+E:\workspace\OOP\QLSV\DSSV\DSSV\obj\Debug\net6.0\DSSV.pdb
+E:\workspace\OOP\QLSV\DSSV\DSSV\obj\Debug\net6.0\DSSV.genruntimeconfig.cache
+E:\workspace\OOP\QLSV\DSSV\DSSV\obj\Debug\net6.0\ref\DSSV.dll

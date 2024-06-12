@@ -1,0 +1,14 @@
+E:\workspace\OOP\Caphe\Caphe\bin\Debug\net7.0\Caphe.exe
+E:\workspace\OOP\Caphe\Caphe\bin\Debug\net7.0\Caphe.deps.json
+E:\workspace\OOP\Caphe\Caphe\bin\Debug\net7.0\Caphe.runtimeconfig.json
+E:\workspace\OOP\Caphe\Caphe\bin\Debug\net7.0\Caphe.dll
+E:\workspace\OOP\Caphe\Caphe\bin\Debug\net7.0\Caphe.pdb
+E:\workspace\OOP\Caphe\Caphe\obj\Debug\net7.0\Caphe.GeneratedMSBuildEditorConfig.editorconfig
+E:\workspace\OOP\Caphe\Caphe\obj\Debug\net7.0\Caphe.AssemblyInfoInputs.cache
+E:\workspace\OOP\Caphe\Caphe\obj\Debug\net7.0\Caphe.AssemblyInfo.cs
+E:\workspace\OOP\Caphe\Caphe\obj\Debug\net7.0\Caphe.csproj.CoreCompileInputs.cache
+E:\workspace\OOP\Caphe\Caphe\obj\Debug\net7.0\Caphe.dll
+E:\workspace\OOP\Caphe\Caphe\obj\Debug\net7.0\refint\Caphe.dll
+E:\workspace\OOP\Caphe\Caphe\obj\Debug\net7.0\Caphe.pdb
+E:\workspace\OOP\Caphe\Caphe\obj\Debug\net7.0\Caphe.genruntimeconfig.cache
+E:\workspace\OOP\Caphe\Caphe\obj\Debug\net7.0\ref\Caphe.dll

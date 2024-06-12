@@ -1,0 +1,15 @@
+D:\workspace\OOP\ONTAP_thhdt\ontap\obj\Debug\net8.0\ontap.GeneratedMSBuildEditorConfig.editorconfig
+D:\workspace\OOP\ONTAP_thhdt\ontap\obj\Debug\net8.0\ontap.AssemblyInfoInputs.cache
+D:\workspace\OOP\ONTAP_thhdt\ontap\obj\Debug\net8.0\ontap.AssemblyInfo.cs
+D:\workspace\OOP\ONTAP_thhdt\ontap\obj\Debug\net8.0\ontap.csproj.CoreCompileInputs.cache
+D:\workspace\OOP\ONTAP_thhdt\ontap\obj\Debug\net8.0\ontap.sourcelink.json
+D:\workspace\OOP\ONTAP_thhdt\ontap\bin\Debug\net8.0\ontap.exe
+D:\workspace\OOP\ONTAP_thhdt\ontap\bin\Debug\net8.0\ontap.deps.json
+D:\workspace\OOP\ONTAP_thhdt\ontap\bin\Debug\net8.0\ontap.runtimeconfig.json
+D:\workspace\OOP\ONTAP_thhdt\ontap\bin\Debug\net8.0\ontap.dll
+D:\workspace\OOP\ONTAP_thhdt\ontap\bin\Debug\net8.0\ontap.pdb
+D:\workspace\OOP\ONTAP_thhdt\ontap\obj\Debug\net8.0\ontap.dll
+D:\workspace\OOP\ONTAP_thhdt\ontap\obj\Debug\net8.0\refint\ontap.dll
+D:\workspace\OOP\ONTAP_thhdt\ontap\obj\Debug\net8.0\ontap.pdb
+D:\workspace\OOP\ONTAP_thhdt\ontap\obj\Debug\net8.0\ontap.genruntimeconfig.cache
+D:\workspace\OOP\ONTAP_thhdt\ontap\obj\Debug\net8.0\ref\ontap.dll

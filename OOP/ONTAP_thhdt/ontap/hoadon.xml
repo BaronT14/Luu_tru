@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dshd>
+    <HOADON>
+        <loai>1</loai>
+        <ms>K001</ms>
+        <ten>Nguyen Van A</ten>
+        <ngaylap>2024-05-15</ngaylap>
+        <HANG>
+            <MH>H001</MH>
+            <tenHang>Xang 92</tenHang>
+            <dongia>23000</dongia>
+        </HANG>
+        <soluong>40</soluong>
+    </HOADON>
+    <HOADON>
+        <loai>1</loai>
+        <ms>K002</ms>
+        <ten>Nguyen Van B</ten>
+        <ngaylap>2024-05-17</ngaylap>
+        <HANG>
+            <MH>H001</MH>
+            <tenHang>Xang 92</tenHang>
+            <dongia>23000</dongia>
+        </HANG>
+        <soluong>90</soluong>
+    </HOADON>
+    <HOADON>
+        <loai>2</loai>
+        <ms>K003</ms>
+        <ten>Nguyen Long</ten>
+        <ngaylap>2024-05-11</ngaylap>
+        <HANG>
+            <MH>H002</MH>
+            <tenHang>Xang 95</tenHang>
+            <dongia>25000</dongia>
+        </HANG>
+        <soluong>10</soluong>
+    </HOADON>
+    <HOADON>
+        <loai>2</loai>
+        <ms>K005</ms>
+        <ten>Nguyen Long</ten>
+        <ngaylap>2024-06-11</ngaylap>
+        <HANG>
+            <MH>H002</MH>
+            <tenHang>Xang 95</tenHang>
+            <dongia>25000</dongia>
+        </HANG>
+        <soluong>170</soluong>
+    </HOADON>
+    <HOADON>
+        <loai>3</loai>
+        <ms>K004</ms>
+        <ten>Nguyen Van D</ten>
+        <ngaylap>2024-05-19</ngaylap>
+        <HANG>
+            <MH>H003</MH>
+            <tenHang>Dau hoa</tenHang>
+            <dongia>19000</dongia>
+        </HANG>
+        <soluong>4</soluong>
+    </HOADON>
+</dshd>

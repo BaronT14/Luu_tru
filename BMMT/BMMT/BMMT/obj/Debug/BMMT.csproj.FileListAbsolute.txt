@@ -1,0 +1,7 @@
+E:\workspace\BMMT\BMMT\BMMT\bin\Debug\BMMT.exe.config
+E:\workspace\BMMT\BMMT\BMMT\bin\Debug\BMMT.exe
+E:\workspace\BMMT\BMMT\BMMT\bin\Debug\BMMT.pdb
+E:\workspace\BMMT\BMMT\BMMT\obj\Debug\BMMT.csproj.AssemblyReference.cache
+E:\workspace\BMMT\BMMT\BMMT\obj\Debug\BMMT.csproj.CoreCompileInputs.cache
+E:\workspace\BMMT\BMMT\BMMT\obj\Debug\BMMT.exe
+E:\workspace\BMMT\BMMT\BMMT\obj\Debug\BMMT.pdb

@@ -1,0 +1,7 @@
+E:\workspace\leetcode\w1\w1\obj\Debug\w1.csproj.AssemblyReference.cache
+E:\workspace\leetcode\w1\w1\obj\Debug\w1.csproj.CoreCompileInputs.cache
+E:\workspace\leetcode\w1\w1\bin\Debug\w1.exe.config
+E:\workspace\leetcode\w1\w1\bin\Debug\w1.exe
+E:\workspace\leetcode\w1\w1\bin\Debug\w1.pdb
+E:\workspace\leetcode\w1\w1\obj\Debug\w1.exe
+E:\workspace\leetcode\w1\w1\obj\Debug\w1.pdb

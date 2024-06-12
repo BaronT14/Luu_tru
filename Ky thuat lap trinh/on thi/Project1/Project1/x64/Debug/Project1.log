@@ -1,0 +1,7 @@
+﻿  DeQui.cpp
+E:\workspace\Ky thuat lap trinh\on thi\Project1\Project1\DeQui.cpp(10,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+E:\workspace\Ky thuat lap trinh\on thi\Project1\Project1\DeQui.cpp(73,19): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+E:\workspace\Ky thuat lap trinh\on thi\Project1\Project1\DeQui.cpp(119,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+E:\workspace\Ky thuat lap trinh\on thi\Project1\Project1\DeQui.cpp(120,6): warning C4101: 'a': unreferenced local variable
+E:\workspace\Ky thuat lap trinh\on thi\Project1\Project1\DeQui.cpp(117): warning C4715: 'C': not all control paths return a value
+  Project1.vcxproj -> E:\workspace\Ky thuat lap trinh\on thi\Project1\x64\Debug\Project1.exe

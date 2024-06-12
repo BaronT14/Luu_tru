@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="main.Lythuyet">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAAAAAAAAAAAAAAIAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Lythuyet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="main.Abstract_class">
+    <Position X="2" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAEAAAAIAAAACAAAAAEAAQAJAAEAA=</HashCode>
+      <FileName>Abstract_class.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="main.Thuchanh">
+    <Position X="4" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAACAAAAAAABAAIAAEAA=</HashCode>
+      <FileName>Thuchanh.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
