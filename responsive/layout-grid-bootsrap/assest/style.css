@@ -1,0 +1,20 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.item {
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: 600;
+    background-color: #cee9af;
+    height: 250px;
+    text-align: center;
+    color: #fff;
+    margin-top: 8px;
+}
+
+.item1{
+    background-color: burlywood;
+}
