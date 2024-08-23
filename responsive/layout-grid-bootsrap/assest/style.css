@@ -6,10 +6,9 @@
 
 .item {
     font-size: 30px;
-    line-height: 30px;
+    line-height: 200px;
     font-weight: 600;
     background-color: #cee9af;
-    height: 250px;
     text-align: center;
     color: #fff;
     margin-top: 8px;
@@ -17,4 +16,22 @@
 
 .item1{
     background-color: burlywood;
+}
+
+.layout{
+    display: flex;
+    margin: 0 32px;
+}
+
+@media (min-width: 740px) and (max-width: 1023px){
+    .hide-on-tablet{
+        display: none;
+        
+    }
+}
+
+@media (max-width: 739px){
+    .hide-on-mobile{
+        display: none;
+    }
 }
