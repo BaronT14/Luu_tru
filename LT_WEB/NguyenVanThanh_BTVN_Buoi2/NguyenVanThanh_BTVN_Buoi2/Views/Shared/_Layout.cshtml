@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/asset/css/grid.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/asset/css/style.css" />
+</head>
+<body>
+    <div class="header">
+        <div class="grid wide">
+            <div class="header-contact row">
+                <div class="col l-4">
+                    <img class="logo-img" src="~/Content/asset/img/logo.jpg" alt="">
+                </div>
+                <div class="col l-4">
+                    <ul class="header-contact-list">
+                        Hà Nội
+                        <li class="header-contact-item">
+                            Điện thoại: 024.73007.008
+                        </li>
+                        <li class="header-contact-item">
+                            Địa chỉ: Số 63/445 Lạc Long Quân, Tây Hồ, Hà Nội
+                        </li>
+                        <li class="header-contact-item">
+                            Email: hnthefreshgarden@gmail.com
+                        </li>
+                    </ul>
+                </div>
+                <div class="col l-4">
+                    <ul class="header-contact-list">
+                        Thành phố Hồ Chí Minh
+                        <li class="header-contact-item">
+                            Điện thoại: 024.73007.008
+                        </li>
+                        <li class="header-contact-item">
+                            Địa chỉ: 189 XVN Tĩnh, P.17, Q.Bình Thạnh
+                        </li>
+                        <li class="header-contact-item">
+                            Email: tphcmthefreshgarden@gmail.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header-navbar">
+                <div class="header-navbar-left">
+                    <ul class="header-navbar-list">
+                        <li class="header-navbar-item">
+                            <img class="header-navbar-icon" src="~/Content/asset/img/423483-200.png" alt="">
+                        </li>
+                        <li class="header-navbar-item">
+                            @Html.ActionLink("Trang chủ", "HomePage", "Home", null, new {@class = "header-navbar-item-link"})
+                        </li>
+                        <li class="header-navbar-item">
+                            @Html.ActionLink("Đăng ký", "DangKy", "Home", null, new { @class = "header-navbar-item-link" })
+                        </li>
+                        <li class="header-navbar-item">
+                            @Html.ActionLink("Đăng nhập", "DangNhap", "Home", null, new { @class = "header-navbar-item-link" })
+                        </li>
+                        <li class="header-navbar-item">
+                            <a href="" class="header-navbar-item-link">Liên hệ</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="header-navbar-right">
+                    <ul class="header-navbar-list">
+                        <li class="header-navbar-item">
+                            <input type="text" class="header-navbar-item-input">
+                        </li>
+                        <li class="header-navbar-item">
+                            <button class="header-navbar-item-btn">search</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid wide">
+            <div class="row">
+                <div class="container-main col l-10">
+                    @RenderBody()
+                </div>
+
+                <div class="container-nav col l-2">
+                    <h3 class="container-nav-header">HOA THEO CHỦ ĐỀ</h3>
+                    <ul class="container-nav-list">
+                        <li class="container-nav-item"><a href="">Hoa sinh nhật</a></li>
+                        <li class="container-nav-item"><a href="">Hoa khai trương</a></li>
+                        <li class="container-nav-item"><a href="">Hoa cưới</a></li>
+                    </ul>
+                    <h3 class="container-nav-header">CHỌN THEO GIÁ</h3>
+                    <ul class="container-nav-list">
+                        <li class="container-nav-item"><a href="">250.000đ trở xuống</a></li>
+                        <li class="container-nav-item"><a href="">250.000đ - 400.000đ</a></li>
+                        <li class="container-nav-item"><a href="">400.000đ - 600.000đ</a></li>
+                        <li class="container-nav-item"><a href="">600.000đ - 900.000đ</a></li>
+                        <li class="container-nav-item"><a href="">Trên 1.000.000đ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="grid wide">
+            <div class="row">
+                <div class="footer-body">
+                    Nguyễn Văn Thành
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

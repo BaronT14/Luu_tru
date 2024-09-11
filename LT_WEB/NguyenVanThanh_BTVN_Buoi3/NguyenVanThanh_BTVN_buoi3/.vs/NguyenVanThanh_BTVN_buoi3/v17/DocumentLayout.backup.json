@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\workspace\\LT_WEB\\NguyenVanThanh_BTVN_Buoi3\\NguyenVanThanh_BTVN_buoi3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B30F77DF-CB47-4D66-93ED-CCDE73460C42}|NguyenVanThanh_BTVN_buoi3\\NguyenVanThanh_BTVN_buoi3.csproj|e:\\workspace\\lt_web\\nguyenvanthanh_btvn_buoi3\\nguyenvanthanh_btvn_buoi3\\nguyenvanthanh_btvn_buoi3\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B30F77DF-CB47-4D66-93ED-CCDE73460C42}|NguyenVanThanh_BTVN_buoi3\\NguyenVanThanh_BTVN_buoi3.csproj|solutionrelative:nguyenvanthanh_btvn_buoi3\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B30F77DF-CB47-4D66-93ED-CCDE73460C42}|NguyenVanThanh_BTVN_buoi3\\NguyenVanThanh_BTVN_buoi3.csproj|e:\\workspace\\lt_web\\nguyenvanthanh_btvn_buoi3\\nguyenvanthanh_btvn_buoi3\\nguyenvanthanh_btvn_buoi3\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B30F77DF-CB47-4D66-93ED-CCDE73460C42}|NguyenVanThanh_BTVN_buoi3\\NguyenVanThanh_BTVN_buoi3.csproj|solutionrelative:nguyenvanthanh_btvn_buoi3\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B30F77DF-CB47-4D66-93ED-CCDE73460C42}|NguyenVanThanh_BTVN_buoi3\\NguyenVanThanh_BTVN_buoi3.csproj|e:\\workspace\\lt_web\\nguyenvanthanh_btvn_buoi3\\nguyenvanthanh_btvn_buoi3\\nguyenvanthanh_btvn_buoi3\\models\\dsphongban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B30F77DF-CB47-4D66-93ED-CCDE73460C42}|NguyenVanThanh_BTVN_buoi3\\NguyenVanThanh_BTVN_buoi3.csproj|solutionrelative:nguyenvanthanh_btvn_buoi3\\models\\dsphongban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\workspace\\LT_WEB\\NguyenVanThanh_BTVN_Buoi3\\NguyenVanThanh_BTVN_buoi3\\NguyenVanThanh_BTVN_buoi3\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "NguyenVanThanh_BTVN_buoi3\\Views\\Home\\Index.cshtml",
+              "ToolTip": "E:\\workspace\\LT_WEB\\NguyenVanThanh_BTVN_Buoi3\\NguyenVanThanh_BTVN_buoi3\\NguyenVanThanh_BTVN_buoi3\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "NguyenVanThanh_BTVN_buoi3\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-03T07:31:31.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "E:\\workspace\\LT_WEB\\NguyenVanThanh_BTVN_Buoi3\\NguyenVanThanh_BTVN_buoi3\\NguyenVanThanh_BTVN_buoi3\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "NguyenVanThanh_BTVN_buoi3\\Controllers\\HomeController.cs",
+              "ToolTip": "E:\\workspace\\LT_WEB\\NguyenVanThanh_BTVN_Buoi3\\NguyenVanThanh_BTVN_buoi3\\NguyenVanThanh_BTVN_buoi3\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "NguyenVanThanh_BTVN_buoi3\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T03:29:52.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DSPhongBan.cs",
+              "DocumentMoniker": "E:\\workspace\\LT_WEB\\NguyenVanThanh_BTVN_Buoi3\\NguyenVanThanh_BTVN_buoi3\\NguyenVanThanh_BTVN_buoi3\\Models\\DSPhongBan.cs",
+              "RelativeDocumentMoniker": "NguyenVanThanh_BTVN_buoi3\\Models\\DSPhongBan.cs",
+              "ToolTip": "E:\\workspace\\LT_WEB\\NguyenVanThanh_BTVN_Buoi3\\NguyenVanThanh_BTVN_buoi3\\NguyenVanThanh_BTVN_buoi3\\Models\\DSPhongBan.cs",
+              "RelativeToolTip": "NguyenVanThanh_BTVN_buoi3\\Models\\DSPhongBan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T03:21:38.767Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

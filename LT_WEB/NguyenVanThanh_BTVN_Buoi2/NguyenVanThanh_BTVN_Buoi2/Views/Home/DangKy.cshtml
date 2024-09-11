@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "DangKy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="container-main-header">Đăng ký</h3>
+<div class="form-DN">
+    <input type="text" name="fullname" placeholder="Full name" class="form-input">
+    <input type="email" name="Email" placeholder="Email" class="form-input">
+    <input type="text" name="address" placeholder="Address" class="form-input">
+    <input type="password" name="password" placeholder="Password" class="form-input">
+    <label style="display: block; margin: 12px;">Giới tính</label>
+    <input type="radio" name="sex" class="form-checkbox">
+    <label>  Nam</label>
+    <input type="radio" name="sex" class="form-checkbox">
+    <label>  Nữ</label>
+    <input type="radio" name="sex" class="form-checkbox">
+    <label>  Khác</label>
+    <br>
+    <label style="display: block; margin: 12px;">Nghề nghiệp</label>
+    <select name="Jobs" class="form-select">
+        <option>Giáo viên</option>
+        <option>Công nhân</option>
+        <option>Bác sĩ</option>
+    </select>
+    <button class="form-btn">Đăng ký</button>
+</div>
