@@ -1,0 +1,73 @@
+﻿@model IEnumerable<todoList.Models.todoUser>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To-do List</title>
+    <link rel="stylesheet" href="~/css/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+
+        <!-- To-Do Section -->
+        <div class="section">
+            <div class="section-header">
+                <span>TO DO</span>
+                <span>@ViewBag.chualam TASKS</span>
+            </div>
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th>Nhiệm vụ</th>
+                        <th>Ngày tạo</th>
+                        <th>Ngày hết hạn</th>
+                        <th>Ưu tiên</th>
+                        <th>Tag</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td><input type="checkbox"> @Html.DisplayFor(modelItem => item.title) </td>
+                            <td>@Html.DisplayFor(modelItem => item.createAt)</td>
+                            <td>@Html.DisplayFor(modelItem => item.deadline)</td>
+                            <td>@Html.DisplayFor(modelItem => item.prior)</td>
+                            <td>@Html.ActionLink("Xem chi tiết", "detail", new { id = item.todoId })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a href="#" class="new-task">+ New task</a>
+        </div>
+
+        <!-- Completed Section -->
+        <div class="section completed">
+            <div class="section-header">
+                <span>COMPLETE</span>
+                <span>1 TASK</span>
+            </div>
+            <table class="task-table">
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" checked> Research paper</td>
+                        <td><img src="assignee-icon.png" alt="Assignee"></td>
+                        <td><img src="calendar-icon.png" alt="Due Date"></td>
+                        <td></td>
+                        <td><span class="label english">English 201</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="#" class="new-task">+ New task</a>
+        </div>
+    </div>
+</body>
+</html>
+

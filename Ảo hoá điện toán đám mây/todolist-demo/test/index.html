@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo List - Class Assignments</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do Lists</h1>
+
+        <!-- To-Do Section -->
+        <div class="section">
+            <div class="section-header">
+                <span>TO DO</span>
+                <span>3 TASKS</span>
+            </div>
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Assignee</th>
+                        <th>Due Date</th>
+                        <th>Priority</th>
+                        <th>Tag</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"> Review chapter 4 for midterm</td>
+                        <td><img src="assignee-icon.png" alt="Assignee"></td>
+                        <td><img src="calendar-icon.png" alt="Due Date"></td>
+                        <td></td>
+                        <td><span class="label history">History 102</span></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"> Annotated bibliography</td>
+                        <td><img src="assignee-icon.png" alt="Assignee"></td>
+                        <td><img src="calendar-icon.png" alt="Due Date"></td>
+                        <td></td>
+                        <td><span class="label english">English 201</span></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"> Chapter 7 homework</td>
+                        <td><img src="assignee-icon.png" alt="Assignee"></td>
+                        <td><img src="calendar-icon.png" alt="Due Date"></td>
+                        <td></td>
+                        <td><span class="label math">Math 102</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="#" class="new-task">+ New task</a>
+        </div>
+
+        <!-- Completed Section -->
+        <div class="section completed">
+            <div class="section-header">
+                <span>COMPLETE</span>
+                <span>1 TASK</span>
+            </div>
+            <table class="task-table">
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" checked> Research paper</td>
+                        <td><img src="assignee-icon.png" alt="Assignee"></td>
+                        <td><img src="calendar-icon.png" alt="Due Date"></td>
+                        <td></td>
+                        <td><span class="label english">English 201</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="#" class="new-task">+ New task</a>
+        </div>
+    </div>
+</body>
+</html>
