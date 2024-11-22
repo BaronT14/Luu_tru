@@ -1,0 +1,62 @@
+﻿@model Booking_vivu.KHACHHANG
+
+@{
+    ViewBag.Title = "thongTinCaNhan";
+    Layout = "~/Views/Share/KhachHang_layout.cshtml";
+}
+
+<div class="container">
+    <div>
+        <h4>KHACHHANG</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.HOTEN)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HOTEN)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SDT)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SDT)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EMAIL)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EMAIL)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NGSINH)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NGSINH)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.GTINH)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GTINH)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DCHI)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DCHI)
+            </dd>
+        </dl>
+    </div>
+</div>

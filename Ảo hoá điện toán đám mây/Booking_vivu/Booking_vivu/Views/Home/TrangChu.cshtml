@@ -1,0 +1,112 @@
+﻿@model Booking_vivu.Models.loginModel
+@{
+    ViewBag.Title = "TrangChu";
+    Layout = "~/Views/Share/KhachHang_layout.cshtml";
+}
+
+<div class="container">
+    <div class="grid wide">
+        <div class="slide"><img src="~/assest/img/slide.jpg" alt="DU LỊCH VIỆT NAM"></div>
+        <div class="container__box-search-wrap">
+            <div class="container__box-search">
+                <div class="box-search__header">
+                    <h3>Khám phá nơi bạn đến?</h3>
+                    <p>Khám phá dễ dàng. Hãy khám phá thế giới của bạn.</p>
+                </div>
+                <div class="box-search__search">
+                    <div class="btn box-search__search-item" >
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <div id="search-place">Tất cả vị trí</div>
+                        <i class="fa-solid fa-caret-down"></i>
+                        <div class="box-search__search-list">
+                            <ul id="ds_diadiem">
+                                <li class="box-search__search-list-item">Tất cả vị trí</li>
+                                @Html.Action("dd_Tour", "Tour")
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="btn box-search__search-item">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <div class="search-price" id="show-price">Tất cả mức giá</div>
+                        <i class="fa-solid fa-caret-down"></i>
+                        <div class="box-search__search-list">
+                            <ul>
+                                <li class="box-search__search-list-item" id="price-list">Dưới 1tr</li>
+                                <li class="box-search__search-list-item" id="price-list">Trên 1tr</li>
+                                <li class="box-search__search-list-item" id="price-list">Trên 3tr</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="btn box-search__search-btn">Tìm kiếm</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container__product">
+            <h3 class="header-h3">
+                <i class="fa-solid fa-quote-left"></i>
+                CHỌN TOUR NGAY
+            </h3>
+            <div class="row">
+                @*<div class="col l-4">
+                    <div class="product-info">
+                        <a href="" class="product-info-link">
+                            <div class="product-img" style="background-image: url('https://file1.dangcongsan.vn/data/0/images/2024/04/11/upload_673/hue-imperial-gate-1024x683-754-17016811818591749547652.png');"></div>
+                            <div class="product-body">
+                                <h3 class="product-header">Cố Đô Huế</h3>
+                                <p class="product-desc"></p>
+                                <div class="product-price-wrap">
+                                    <div class="product-price"><span>1,000,000</span>đ / Khách</div>
+                                    <button class="product-book-btn btn">Đặt vé</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>*@
+                @Html.Action("ht_Tour", "Tour")
+                <div class="col l-4">
+                    <div class="product-info product-all">
+                        <a href="/Tour/HienThiTour">
+                            Xem tất cả
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container__contact" id="contact">
+            <div class="container__contact-wrap">
+                <h3 class="header-h3">
+                    <i class="fa-solid fa-quote-left"></i>
+                    Liên hệ với chúng tôi
+                </h3>
+                <div class="contact__form">
+                    <div class="contact__form-left">
+                        <textarea id="name" placeholder="Tên của bạn" class="input-text" rows="1"></textarea>
+                        <textarea id="phone" placeholder="Số điện thoại" class="input-text" rows="1"></textarea>
+                        @*contact__form-btn-sent*@
+                        <div class="contact__form-btn" id="contact__form-btn">
+                            <button onclick="sendMess()" id="submit_form" class="btn" style="width: 100%;">
+                                Gửi
+                                <i class="fa-solid fa-paper-plane" style="margin-left: 4px;"></i>
+                            </button>
+                            <div class="btn btn-sent" style="width: 100%;">
+                                Đã gửi
+                                <i class="fa-solid fa-check" style="margin-left: 4px;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact__form-right">
+                        <textarea id="mess" placeholder="Tin nhắn" class="input-text" style="height: 260px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/assest/js/main.js">
+</script>

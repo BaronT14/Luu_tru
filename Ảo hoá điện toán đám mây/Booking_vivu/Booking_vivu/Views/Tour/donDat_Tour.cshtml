@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "donDat_Tour";
+    Layout = "~/Views/Share/KhachHang_layout.cshtml";
+    KHACHHANG user = Session["UserSession"] as KHACHHANG;
+    TOUR tour = ViewBag.chiTietTour;
+    dataDataContext db = new dataDataContext();
+}
+
+<div class="container">
+    <div class="grid wide">
+        <h3 class="header-h3">@tour.TENTOUR</h3>
+        <div class="info-tour">
+            <div class="info-tour__left">
+                <div class="product-img info-img" style="background-image: url('@tour.img');"></div>
+            </div>
+            <div class="info-tour__right">
+                <div class="desc-tour">@tour.MOTA</div>
+                <ul class="info-tour__list">
+                    <li class="info-tour__list-item"><b>Thời gian: </b>@tour.THOILUONG</li>
+                    <li class="info-tour__list-item"><b>Khách sạn: </b>@tour.KHACHSAN.TENKS</li>
+                    <li class="info-tour__list-item listDate"><b>Ngày tổ chức trong tháng này: </b>
+                        @if (ViewBag.ngaytc != null)
+                        {
+                            foreach (var i in ViewBag.ngaytc)
+                            {
+                                <div class="itemDate">
+                                    @i.ngaykh.ToString("dd/MM")
+                                </div>
+                            }
+                        }
+                    </li>
+                    <li class="info-tour__list-item"><b>Giá Tour: </b><span class="price">@tour.GIATOUR</span><b> VNĐ / người</b></li>
+                    <li class="info-tour__list-item"><a href="#booking"><div class="btn btn-booking">ĐẶT NGAY</div></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="booking" id="booking">
+            <div class="more-tour">trr</div>
+            <div class="booking-form" id="booking-form" style="padding-bottom: 60px;">
+                <h4 class="booking-form__header">ĐƠN ĐẶT TOUR</h4>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <form class="row g-2">
+                        <div class="col-md-12">
+                            <label for="inputPassword4" class="form-label">Họ và Tên</label>
+                            <input type="text" class="form-control" id="inputPassword4" value="@user.HOTEN" disabled>
+                            <input type="hidden" name="id" value="@tour.TOURID" />
+                        </div>
+                        <div class="col-md-12">
+                            <label for="inputAddress" class="form-label">Số điện thoại</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="Số điện thoại" disabled value="@user.SDT">
+                        </div>
+                        <div class="col-12">
+                            <label for="inputEmail4" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="inputEmail4" value="@user.EMAIL" disabled>
+                        </div>
+                        <div class="col-12">
+                            <label for="inputAddress2" class="form-label">Địa điểm đón</label>
+                            <input type="text" class="form-control" name="ddd" placeholder = "vd: Sân bay Tân Sơn Nhất">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="inputCity" class="form-label">Số lượng tham gia</label>
+                            <input type="number" class="form-control" name="sl" value="1">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="inputCity" class="form-label">Ngày khởi hành</label>
+                            <select name="ngaykh" class="form-select form-select-sm form-control" aria-label=".form-select-sm example">
+                                @if (ViewBag.ngaytc1 != null)
+                                {
+                                    foreach (var i in ViewBag.ngaytc1)
+                                    {
+                                        <option value="@i.ngaykh">
+                                            @i.ngaykh.ToString("dd/MM/yyyy")
+                                        </option>
+
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-12" style="position: relative;">
+                            <button type="submit" class="btn1 btn--size-s" style="border: 1px #ccc solid; position: absolute; right: 5px; top: 10px; background-color: var(--primary-color);"><b>ĐẶT TOUR</b></button>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>

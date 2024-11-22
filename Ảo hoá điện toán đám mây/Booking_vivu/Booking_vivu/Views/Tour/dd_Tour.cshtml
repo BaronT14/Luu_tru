@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Booking_vivu.TOUR>
+
+@foreach (var item in Model)
+{
+    <li class="box-search__search-list-item" id="ds-tour">@Html.DisplayFor(modelItem => item.DIADIEMTOUR)</li>
+}

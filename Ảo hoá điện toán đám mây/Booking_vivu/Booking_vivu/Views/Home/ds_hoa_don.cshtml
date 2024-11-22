@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Booking_vivu.Models.ddtour>
+@using Booking_vivu.Models;
+
+
+@{
+    ViewBag.Title = "ds_hoa_don";
+    Layout = "~/Views/Share/KhachHang_layout.cshtml";
+    List<ddtour> dsdd = Session["donDat"] as List<ddtour>;
+}
+
+<div class="container">
+    <div class="grid wide">
+        <h3 class="header-h3">DANH SÁCH TOUR CHỜ</h3>
+        @if (dsdd != null)
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        Tên Tour
+                    </th>
+                    <th>
+                        Số lượng tham gia
+                    </th>
+                    <th>
+                        Địa điểm đón
+                    </th>
+                    <th>
+                        Ngày bắt đầu
+                    </th>
+                    <th>
+                        Ngày kết thúc
+                    </th>
+                    <th>
+                        Giá
+                    </th>
+                    <th>
+                        Chi tiết
+                    </th>
+                </tr>
+                @foreach (var item in dsdd)
+                {
+                    
+                    <tr>
+                        <td>
+                            <a href="/Tour/donDat_Tour/@item.CTHD.IDTOUR">@Html.DisplayFor(modelItem => item.TOUR.TENTOUR)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CTHD.SL)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CTHD.DIADIEMDON)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CTHD.NGAYKH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CTHD.NGAYKT)
+                        </td>
+                        <td>@(@item.CTHD.SL * @item.TOUR.GIATOUR)</td>
+                        <td>
+                            @Html.ActionLink("Xoá", "xoa_donDat_Tour", "Tour", new { id = item.CTHD.IDTOUR }, null)
+                        </td>
+                    </tr>
+}
+            </table>
+            <button class="btn1 btn--primary">Thanh toán</button>
+        }
+        else
+        {
+            <h4>Danh sách trống</h4>
+        }
+    </div>
+</div>

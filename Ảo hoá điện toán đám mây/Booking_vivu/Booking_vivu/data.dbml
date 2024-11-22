@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QL_BOOKING" Class="dataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=booking-vivu.database.windows.net;Initial Catalog=QL_BOOKING;User ID=baron" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QL_BOOKINGConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CHUCVU" Member="CHUCVUs">
+    <Type Name="CHUCVU">
+      <Column Name="MACV" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENCV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="CHUCVU_NHANVIEN" Member="NHANVIENs" ThisKey="MACV" OtherKey="CHUCVU" Type="NHANVIEN" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TOUR" Member="TOURs">
+    <Type Name="TOUR">
+      <Column Name="TOURID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENTOUR" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIADIEMTOUR" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="THOILUONG" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="MAKS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="GIATOUR" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MOTA" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SoLanDat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="img" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="TOUR_CTHD" Member="CTHDs" ThisKey="TOURID" OtherKey="IDTOUR" Type="CTHD" />
+      <Association Name="TOUR_lichtrinh" Member="lichtrinhs" ThisKey="TOURID" OtherKey="matour" Type="lichtrinh" />
+      <Association Name="TOUR_ngaytochuc" Member="ngaytochucs" ThisKey="TOURID" OtherKey="matour" Type="ngaytochuc" />
+      <Association Name="KHACHSAN_TOUR" Member="KHACHSAN" ThisKey="MAKS" OtherKey="MAKS" Type="KHACHSAN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CTHD" Member="CTHDs">
+    <Type Name="CTHD">
+      <Column Name="MAHD" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NGAYKH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NGAYKT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DIADIEMDON" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IDTOUR" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NHANVIEN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="TOUR_CTHD" Member="TOUR" ThisKey="IDTOUR" OtherKey="TOURID" Type="TOUR" IsForeignKey="true" />
+      <Association Name="HOADON_CTHD" Member="HOADON" ThisKey="MAHD" OtherKey="IDHD" Type="HOADON" IsForeignKey="true" />
+      <Association Name="NHANVIEN_CTHD" Member="NHANVIEN1" ThisKey="NHANVIEN" OtherKey="MANV" Type="NHANVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HOADON" Member="HOADONs">
+    <Type Name="HOADON">
+      <Column Name="IDHD" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NGAYDAT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TINHTRANGTT" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAYTT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="THANHTIEN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MAKH" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="IDPT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="HOADON_CTHD" Member="CTHDs" ThisKey="IDHD" OtherKey="MAHD" Type="CTHD" />
+      <Association Name="KHACHHANG_HOADON" Member="KHACHHANG" ThisKey="MAKH" OtherKey="MAKH" Type="KHACHHANG" IsForeignKey="true" />
+      <Association Name="PHUONGTHUCTHANHTOAN_HOADON" Member="PHUONGTHUCTHANHTOAN" ThisKey="IDPT" OtherKey="IDPT" Type="PHUONGTHUCTHANHTOAN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHACHHANG" Member="KHACHHANGs">
+    <Type Name="KHACHHANG">
+      <Column Name="MAKH" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HOTEN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NGSINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="GTINH" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="DCHI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PASSWORD" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="KHACHHANG_HOADON" Member="HOADONs" ThisKey="MAKH" OtherKey="MAKH" Type="HOADON" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHACHSAN" Member="KHACHSANs">
+    <Type Name="KHACHSAN">
+      <Column Name="MAKS" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENKS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIADIEM" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="THANHPHO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SLPHONG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="KHACHSAN_TOUR" Member="TOURs" ThisKey="MAKS" OtherKey="MAKS" Type="TOUR" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lichtrinh" Member="lichtrinhs">
+    <Type Name="lichtrinh">
+      <Column Name="matour" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ngaythu" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hoatdong" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="TOUR_lichtrinh" Member="TOUR" ThisKey="matour" OtherKey="TOURID" Type="TOUR" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ngaytochuc" Member="ngaytochucs">
+    <Type Name="ngaytochuc">
+      <Column Name="matour" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ngaykh" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="TOUR_ngaytochuc" Member="TOUR" ThisKey="matour" OtherKey="TOURID" Type="TOUR" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NHANVIEN" Member="NHANVIENs">
+    <Type Name="NHANVIEN">
+      <Column Name="MANV" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENNV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NGAYSINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="GTINH" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="CHUCVU" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="NHANVIEN_CTHD" Member="CTHDs" ThisKey="MANV" OtherKey="NHANVIEN" Type="CTHD" />
+      <Association Name="CHUCVU_NHANVIEN" Member="CHUCVU1" ThisKey="CHUCVU" OtherKey="MACV" Type="CHUCVU" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PHUONGTHUCTHANHTOAN" Member="PHUONGTHUCTHANHTOANs">
+    <Type Name="PHUONGTHUCTHANHTOAN">
+      <Column Name="IDPT" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENPT" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MOTA" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="PHUONGTHUCTHANHTOAN_HOADON" Member="HOADONs" ThisKey="IDPT" OtherKey="IDPT" Type="HOADON" />
+    </Type>
+  </Table>
+  <Function Name="dbo.danhsachtourchuathanhtoan" Method="danhsachtourchuathanhtoan" IsComposable="true">
+    <ElementType Name="danhsachtourchuathanhtoanResult">
+      <Column Name="tourid" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="tentour" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="diadiemtour" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="giatour" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LayThoiGianKetThucTour" Method="LayThoiGianKetThucTour" IsComposable="true">
+    <Parameter Name="IDTOUR" Parameter="iDTOUR" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="NgayKH" Parameter="ngayKH" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.DateTime" />
+  </Function>
+  <Function Name="dbo.danhsachtourdathanhtoan" Method="danhsachtourdathanhtoan" IsComposable="true">
+    <ElementType Name="danhsachtourdathanhtoanResult">
+      <Column Name="tourid" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="tentour" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="diadiemtour" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="giatour" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.DemSLKHBook" Method="DemSLKHBook" IsComposable="true">
+    <Parameter Name="MAKH" Parameter="mAKH" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.fc_ngaytochuc_theothang" Method="fc_ngaytochuc_theothang" IsComposable="true">
+    <Parameter Name="matour" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="thang" Type="System.Int32" DbType="Int" />
+    <ElementType Name="fc_ngaytochuc_theothangResult">
+      <Column Name="ngaykh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.fc_thongke_tourdat" Method="fc_thongke_tourdat" IsComposable="true">
+    <ElementType Name="fc_thongke_tourdatResult">
+      <Column Name="MATOUR" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TENTOUR" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SOLANDAT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.fc_TinhSLKhachSanTheoDiaDiem" Method="fc_TinhSLKhachSanTheoDiaDiem" IsComposable="true">
+    <Parameter Name="ThanhPho" Parameter="thanhPho" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.KiemTraSDTHopLe" Method="KiemTraSDTHopLe" IsComposable="true">
+    <Parameter Name="SDT" Parameter="sDT" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Boolean" />
+  </Function>
+  <Function Name="dbo.CapNhatThongTinKH" Method="CapNhatThongTinKH">
+    <Parameter Name="MaKH" Parameter="maKH" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Hoten" Parameter="hoten" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SDT" Parameter="sDT" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="EMAIL" Parameter="eMAIL" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NGSINH" Parameter="nGSINH" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="GTINH" Parameter="gTINH" Type="System.String" DbType="NVarChar(3)" />
+    <Parameter Name="DCHI" Parameter="dCHI" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.XEMTIEN" Method="XEMTIEN">
+    <Parameter Name="IDHD" Parameter="iDHD" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="THANHTIEN" Parameter="tHANHTIEN" Type="System.Double" DbType="Float" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ThemMoiTour" Method="ThemMoiTour">
+    <Parameter Name="TOURID" Parameter="tOURID" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="TENTOUR" Parameter="tENTOUR" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DIADIEMTOUR" Parameter="dIADIEMTOUR" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="THOILUONG" Parameter="tHOILUONG" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="MAKS" Parameter="mAKS" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="GIATOUR" Parameter="gIATOUR" Type="System.Double" DbType="Float" />
+    <Parameter Name="MOTA" Parameter="mOTA" Type="System.String" DbType="NVarChar(255)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ThemPhuongThucThanhToan" Method="ThemPhuongThucThanhToan">
+    <Parameter Name="idpt" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="tenpt" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="mota" Type="System.String" DbType="NVarChar(255)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.tinhTongDT" Method="tinhTongDT">
+    <Parameter Name="start_date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="end_date" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="tinhTongDTResult">
+      <Column Name="tong" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

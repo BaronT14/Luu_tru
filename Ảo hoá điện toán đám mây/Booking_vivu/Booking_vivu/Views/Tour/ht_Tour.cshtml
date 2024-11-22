@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Booking_vivu.TOUR>
+
+
+@foreach (var item in Model)
+{
+    <div class="col l-4">
+        <div class="product-info">
+            <a href="/Tour/donDat_Tour/@item.TOURID" class="product-info-link">
+                <div class="product-img" style="background-image: url('@item.img');"></div>
+                <div class="product-body">
+                    <h3 class="product-header">@Html.DisplayFor(modelItem => item.TENTOUR)</h3>
+                    <p class="product-desc">@Html.DisplayFor(modelItem => item.DIADIEMTOUR)</p>
+                    <div class="product-price-wrap">
+                        <div class="product-price"><span>@String.Format("{0:N0}", item.GIATOUR)</span> VNĐ / Khách</div>
+                        <button class="product-book-btn btn">Đặt vé</button>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+}

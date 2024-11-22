@@ -1,0 +1,410 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Exo 2", sans-serif;
+    font-size: 62.5%;
+    line-height: 1.6rem;
+}
+
+:root {
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color: #111113;
+    --border-color: #dbdbdb;
+    --primary-color: #77DADA;
+}
+
+ul{
+    padding-left: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #c5c5c5;
+    border-radius: 40px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #9c9c9c; 
+}
+
+.bold{
+    font-weight: 700;
+}
+
+.btn{
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    padding: 22px 0;
+    text-align: center;
+    min-width: 180px;
+    font-size: 1.6rem;
+    color: var(--text-color);
+}
+
+.btn:hover{
+    opacity: 0.8;
+}
+
+.input-text{
+    display: block;
+    font-family: "Exo 2";
+    outline: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    width: 350px;
+    color: var(--text-color);
+    background-color: #d6ffff;
+    padding: 22px;
+    border-radius: 30px;
+    margin-top: 32px;
+    resize: none;
+}
+
+.price{
+    color: #ff002d;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+/* product list */
+.product-info-link{
+    text-decoration: none;
+    padding: 22px 0;
+    display: block;
+}
+
+.product-info{
+    min-height: 393px;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+    margin-top: 24px;
+}
+
+.product-img{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+.product-body{
+    margin: 0 20px;
+}
+
+.product-header {
+    min-height: 44px;
+    padding-top: 2px;
+    margin: 20px 0 12px;
+    font-size: 2rem;
+    line-height: 2.2rem;
+    color: var(--text-color);
+    text-transform: uppercase;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+
+.product-price-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product-price{
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.product-book-btn {
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    font-weight: 600;
+    padding: 12px 0;
+    min-width: fit-content;
+    width: 80px;
+    background-color: var(--primary-color);
+}
+
+.product-book-btn:hover{
+    opacity: 0.8;
+}
+
+.product-all{
+    display: flex;
+    align-items: center;
+    height: 357.33px;
+}
+
+.product-all a{
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: calc(50% - 2rem) 0;
+    font-size: 2rem;
+    line-height: 2rem;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.product-all a i{
+    margin-left: 4px;
+}
+
+.table th{
+	font-size: 14px;
+}
+
+.table td{
+	font-size: 14px;
+}
+
+
+/* modal đăng kí / đăng nhập */
+/* animation */
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes Growth{
+    from{
+        transform: scale(0);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* modal */
+.modal{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    animation: fadeIn linear 0.2s;
+}
+
+.modal__overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__body{
+    z-index: 9999;
+    background-color: var(--white-color);
+    margin: auto;
+    animation: Growth linear 0.2s;
+}
+
+/* btn style */
+.btn1{
+    background-color: var(--white-color);
+    font-size: 1.4em;
+    line-height: 1.4rem;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    min-width: 142px;
+    height: 36px;
+    padding: 0 12px;
+    cursor: pointer;
+    color: var(--text-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn1.btn--normal:hover{
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.auth-form__controls-back{
+    margin-right: 8px;
+}
+
+.btn1.btn--primary{
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.btn1.btn--disable{
+    color: #949494;
+    cursor: default;
+    background-color: #c3c3c3;
+}
+
+.btn1.btn--size-s{
+    font-size: 1.2rem;
+    padding: 0 8px;
+}
+
+/* authen modal */
+.modal__body{
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.auth-form{
+    width: 500px;
+}
+
+.auth-form__container{
+    padding: 0 32px;
+}
+
+.auth-form__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.auth-form__heading{
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--text-color);
+    margin: 32px 0;
+}
+
+.auth-form__switch--btn{
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.auth-form__group {
+    display: flex;
+}
+
+.auth-form__input{
+    height: 40px;
+    width: 100%;
+    margin-top: 16px;
+    padding: 0 12px;
+    font-size: 1.4rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    outline: none;
+}
+
+.auth-form__input:focus{
+    border-color: #777;
+}
+
+.auth-form__aside{
+    margin-top: 28px;
+}
+
+.auth-form__policy-text{
+    font-size: 1.4rem;
+    color: var(--text-color);
+    line-height: 1.8rem;
+    text-align: center;
+}
+
+.auth-form__text-link{
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.auth-form__controls{
+    margin-top: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.auth-form__socials{
+    background-color: #e1e1e1;
+    padding: 14px 36px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.auth-form__socials-icon{
+    font-size: 2.5rem;
+}
+
+.auth-form__socials--facebook{
+    color: var(--white-color);
+    background-color: #3a5a98;
+}
+
+.auth-form__socials--google{
+    color: #666;
+    background-color: var(--white-color);
+}
+
+.auth-form__socials--facebook 
+.auth-form__socials-icon{
+    color: var(--white-color);
+}
+
+.auth-form__socials-label{
+    margin: 0 32px;
+}
+
+.auth-form__help{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.auth-form__help-link{
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-top: 4px;
+    color: #939393;
+}
+
+.auth-form__help-separate{
+    display: block;
+    border-left: 1px solid var(--border-color);
+    height: 22px;
+    margin: 0 16px;
+}
+
+.auth-form__help-forfot{
+    color: var(--primary-color);
+}
+
+.form-check {
+    font-size: 14px;
+    margin-top: 26px;
+    padding: 0 12px;
+}
+
+/* end modal đăng kí / đăng nhập*/
