@@ -1,0 +1,16 @@
+﻿@using QL_KHACHSAN.Models;
+@{
+    KHACHSAN ks = ViewBag.ks;
+    List<PHONG> dsp = ViewBag.dsp;
+}
+
+@if (ks.TANG != null)
+{
+    for (int i = 1; i <= ks.TANG; i++)
+    {
+        <div class="header-tang">Tầng @i</div>
+        @Html.Action("ht_Phong", new { tang = @i, dsp})
+    }
+}
+
+

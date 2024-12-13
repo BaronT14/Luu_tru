@@ -1,0 +1,111 @@
+﻿@model QL_KHACHSAN.Models.PHONG
+
+@{
+    ViewBag.Title = "CapNhatPhong";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+}
+<style>
+
+    .form-select {
+        font-size: var(--font-size);
+    }
+
+    .form-control {
+        font-size: var(--font-size);
+    }
+
+    .control-label {
+        font-size: calc(var(--font-size) - 3px);
+        width: 100%
+    }
+
+    .btn1 {
+        margin: 32px 0;
+    }
+</style>
+<div class="container">
+    <div class="grid">
+        <h3 class="header-h3">Cập nhật phòng</h3>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MAPH)
+
+            <div class="form-group">
+                <div class="control-label col-md-2">Tên phòng</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TENPH, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TENPH, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">Loại phòng</div>
+                <div class="col-md-10">
+                    <select class="form-select" id="loai" name="maloai">
+                        <option selected>--Chọn loại phòng--</option>
+                        @foreach (var i in ViewBag.loai)
+                        {
+                            <option value="@i.MALOAI">@i.TENLOAI</option>
+
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">Tầng</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TANG, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                    @Html.ValidationMessageFor(model => model.TANG, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">Số lượng chứa</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SLCHUA, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                    @Html.ValidationMessageFor(model => model.SLCHUA, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">Số lượng giường</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SOGIUONG, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                    @Html.ValidationMessageFor(model => model.SOGIUONG, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">Giá phòng</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.GIAPHONG, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                    @Html.ValidationMessageFor(model => model.GIAPHONG, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">Tình trạng</div>
+                <div class="col-md-10">
+                    <select class="form-select" id="loai" name="tinhtrang">
+                        <option selected value="Còn trống">Còn trống</option>
+                        <option value="Đang sử dụng">Đang sử dụng</option>
+                        <option value="Bảo trì">Bảo trì</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Cập nhật" class="btn1 btn--primary" />
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

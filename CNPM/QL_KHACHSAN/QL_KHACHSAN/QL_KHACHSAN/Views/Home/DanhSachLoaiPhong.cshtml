@@ -1,0 +1,56 @@
+﻿@model IEnumerable<QL_KHACHSAN.Models.LOAIPHONG>
+
+@{
+    ViewBag.Title = "DanhSachLoaiPhong";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+}
+
+<style>
+    th{
+        font-size: 16px;
+        font-weight: 700;
+    }
+    td {
+        font-size: 13px;
+    }
+</style>
+<div class="container">
+    <div class="grid">
+        <h3 class="header-h3">Danh sách loại phòng</h3>
+
+        <p>
+            <a href="/Home/ThemLoaiPhong" class="btn1 btn--primary">Thêm loại phòng mới</a>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Mã loại
+                </th>
+                <th>
+                    Tên loại
+                </th>
+                <th>
+                    Mô tả
+                </th>
+                <th></th>
+            </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MALOAI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENLOAI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MOTA)
+                </td>
+                <td>
+                    @Html.ActionLink("Xoá", "XoaLoaiPhong", new { maloai = item.MALOAI })
+                </td>
+            </tr>
+        }
+        </table>
+    </div>
+</div>

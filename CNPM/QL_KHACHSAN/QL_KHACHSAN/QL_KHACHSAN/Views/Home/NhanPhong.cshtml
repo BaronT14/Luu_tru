@@ -1,0 +1,157 @@
+﻿@model QL_KHACHSAN.Models.CHITIETKH
+@using QL_KHACHSAN.Models
+@{
+    ViewBag.Title = "Điền thông tin nhận phòng";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+    List<CHITIETKH> dskh = ViewBag.ctkh;
+}
+
+@if(ViewBag.kq != null)
+{
+    <script>showSuccess('Thêm khách lưu trú thành công');</script>
+}
+
+<style>
+    :root {
+        --font-size: 16px;
+    }
+
+    .form-select {
+        font-size: var(--font-size);
+    }
+
+    .form-control {
+        font-size: var(--font-size);
+        margin-bottom: 12px;
+    }
+
+    .control-label {
+        font-size: calc(var(--font-size) - 3px);
+    }
+</style>
+
+<div class="container">
+    <div class="grid">
+
+        <h3 class="header-h3">Nhận phòng</h3>
+        <div style="display: flex; justify-content: space-between;">
+            <div class="left" style="width: 35%;">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>Chi tiết khách lưu trú</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            <span class="control-label col-md-2">Họ và Tên</span>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.HOTEN, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HOTEN, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="control-label col-md-2">Số CCCD</span>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.SOCCCD, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SOCCCD, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="control-label col-md-2">Ngày sinh</span>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.NGSINH, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                @Html.ValidationMessageFor(model => model.NGSINH, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="control-label col-md-2">Giới tính</span>
+                            <div class="col-md-10">
+                                <select class="form-select" id="gioitinh" name="gioitinh">
+                                    <option selected>--Chọn giới tính--</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.GIOITINH, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="control-label col-md-2">Quan hệ</span>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.QUANHE, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.QUANHE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Thêm" class="btn1 btn--primary" />
+                                <a href="/Home/NhanTraHuyPhong?mahd=@ViewBag.mahd" class="btn1 btn--primary">Xong</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="right" style="flex: 1;">
+                <table class="table" style="margin-top: -3px;">
+                    <tr>
+                        <th>
+                            Họ và Tên
+                        </th>
+                        <th>
+                            Số CCCD
+                        </th>
+                        <th>
+                            Ngày sinh
+                        </th>
+                        <th>
+                            Giới tính
+                        </th>
+                        <th>
+                            Quan hệ
+                        </th>
+                        <th>
+                            <a href="/Home/">Xoá tất cả</a>
+                        </th>
+                    </tr>
+                    @try
+                    {
+
+                        foreach (var item in dskh)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HOTEN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SOCCCD)
+                                </td>
+                                <td>
+                                    @String.Format("{0:N0}", @item.NGSINH)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GIOITINH)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.QUANHE)
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Xoá", "xoa_donDat", new { idtour = item.CTHD., id = item.CTHD.MAHD})*@
+                                </td>
+                            </tr>
+                        }
+                    }
+                    catch { }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

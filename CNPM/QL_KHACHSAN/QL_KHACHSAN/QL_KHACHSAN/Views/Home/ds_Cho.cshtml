@@ -1,0 +1,188 @@
+﻿@model IEnumerable<QL_KHACHSAN.Models.ct_doi>
+@using QL_KHACHSAN.Models
+@{
+    ViewBag.Title = "Chi tiết hoá đơn";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+    List<ct_doi> ds = Session["dsct"] as List<ct_doi>;
+    var dskh = Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.dskh);
+    object kh = TempData["kh"];
+    object kq_tao_hd = TempData["KQ_TAO_HD"];
+    string sdt_kh = Session["SDT_KH"] as string;
+}
+
+
+@if (kh != null)
+{
+    <script>
+        window.onload = function () {
+            showWarning("Chưa nhập thông tin khách hàng");
+        }</script>
+}
+
+@if (kq_tao_hd != null)
+{
+    <script>
+        window.onload = function () {
+            showDanger("Tạo hoá đơn thất bại");
+        }</script>
+}
+
+<style>
+    select.form-select {
+        display: block;
+        width: fit-content;
+        min-width: 142px;
+        margin: 16px 0;
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .txtTim {
+        width: 350px;
+        margin: 12px 0;
+    }
+
+    .icon_add_user {
+        font-size: 16px;
+        margin-left: 12px;
+    }
+</style>
+
+<div class="container">
+    <div class="grid wide" style="position: relative;">
+        <h3 class="header-h3">CHI TIẾT HÓA ĐƠN</h3>
+        @if (ViewBag.kq != 0)
+        {
+            <div class="hopTim" style="display: inline-block; position: relative;">
+                <input id="kh" class="form-control-lg txtTim" type="text" placeholder="Nhập số điện thoại hoặc tên khách hàng" aria-label="default input example" onkeyup="showSuggestions(this.value)">
+                <ul id="suggestions" style="list-style: none; position: absolute; top: 40px; left: 0; width: 350px; background: white; border: 1px solid #ccc; padding: 0; display: none; font-size: 14px; z-index: 9;"></ul>
+                <a href="/Home/ThemKhachHang" style="color: var(--text-color)"><i class="fa-solid fa-user-plus icon_add_user"></i></a>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>
+                        Mã phòng
+                    </th>
+                    <th>
+                        Ngày nhận
+                    </th>
+                    <th>
+                        Ngày trả
+                    </th>
+                    <th>
+                        Số khách
+                    </th>
+                    <th>
+                        Tình trạng
+                    </th>
+                    <th>
+                        Thành tiền
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+                @foreach (var item in ds)
+                {
+
+                    <tr>
+                        <td class="phong-item" style="position: relative; cursor: pointer;">
+                            @Html.DisplayFor(modelItem => item.PHONG.TENPH)
+                            <ul class="info-phong" style="list-style: none; display: none; background-color: #fff; color: var(--text-color); font-size: 13px; position: absolute; top: -35px; right: -160px;  min-width: 200px; padding: 6px; border-radius: 6px; box-shadow: 0 1px 3px #ccc; z-index: 3">
+                                <li>Loại phòng:      @item.PHONG.LOAIPHONG.TENLOAI</li>
+                                <li>Số giường phòng: @item.PHONG.SOGIUONG</li>
+                                <li>Số lượng chứa:   @item.PHONG.SLCHUA</li>
+                                <li>Giá:             @String.Format("{0:N0}", item.PHONG.GIAPHONG) VND</li>
+                            </ul>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CTHD.NGAYNHAN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CTHD.NGAYTRA)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CTHD.SOLUONG)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CTHD.TINHTRANG)
+                        </td>
+                        <td>@String.Format("{0:N0}", @item.CTHD.THANHTIEN)</td>
+                        <td>
+                            @Html.ActionLink("Xoá", "XoaCTHD", new { maph = item.CTHD.MAPH })
+                        </td>
+                    </tr>
+                }
+            </table>
+            <div style="position: absolute; right: 0; margin-top: 32px;">
+                <a href="/Home/XoaCTHD_all" class="btn1 btn--normal">Xoá tất cả</a>
+                <a href="/Home/DS_DichVu" class="btn1 btn--primary" style="position: relative; margin: 0 12px;">
+                    Chọn dịch vụ
+                    <span style="border-radius: 50%; background-color: #4e2731; padding: 6px 10px; color: white;font-size: 13px; font-weight: 700; position: absolute; top: -8px; right: -8px;">@Html.Action("SL_DichVu")</span>
+                </a>
+                <a href="/Home/ThanhToan" id="submit" class="btn1 btn--primary">Thanh toán</a>
+            </div>
+        }
+        else
+        {
+            <h3 class="header-h3" style="font-size: 16px; font-weight: 300">Danh sách trống</h3>
+        }
+    </div>
+</div>
+
+@if(sdt_kh != null)
+{
+    <script>
+        const dlkh = '@sdt_kh';
+        const parser = new DOMParser();
+        const decodedString = parser.parseFromString(dlkh, "text/html").body.textContent;
+
+        document.getElementById('kh').value = decodedString;
+    </script>
+}
+
+<script>
+    const customer = JSON.parse('@Html.Raw(dskh)');
+
+    const customers = customer.map(customer =>
+        `${customer}`
+    );
+
+    function showSuggestions(query) {
+        const suggestionBox = document.getElementById("suggestions");
+        suggestionBox.innerHTML = ""; // Xóa gợi ý cũ
+        if (!query) {
+            suggestionBox.style.display = "none";
+            return;
+        }
+
+        // Lọc kết quả
+        const matches = customers.filter(customer =>
+            customer.toLowerCase().includes(query.toLowerCase())
+        );
+
+        // Tạo danh sách gợi ý
+        matches.forEach(match => {
+            const li = document.createElement("li");
+            li.style.padding = "0";
+            const a = document.createElement("a");
+            a.textContent = match;
+            a.href = `/Home/luuSessionKH?kh=${match}`;
+            a.style.display = "block";
+            a.style.padding = "10px";
+            a.style.textDecoration = "none";
+            a.style.color = "black";
+            a.style.cursor = "pointer";
+            li.appendChild(a)
+
+            // Gán giá trị vào ô input khi chọn
+            li.onclick = function () {
+                document.querySelector(".txtTim").value = match;
+                document.getElementById('submit').href = `/Home/ThanhToan?kh=${match}`;
+                suggestionBox.style.display = "none";
+            };
+
+            suggestionBox.appendChild(li);
+        });
+        suggestionBox.style.display = matches.length ? "block" : "none";
+    }
+</script>

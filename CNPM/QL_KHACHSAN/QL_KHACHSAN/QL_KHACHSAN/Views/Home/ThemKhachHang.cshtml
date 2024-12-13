@@ -1,0 +1,146 @@
+﻿@model QL_KHACHSAN.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "Thêm khách hàng mới";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+    var loi = TempData["loi"] != null ? (int)TempData["loi"]: -1;
+}
+
+@if (loi == 2627)
+{
+<script>document.addEventListener("DOMContentLoaded", function () {
+        showWarning('Số điện thoại đã được đăng ký');
+    });</script>
+}
+@if (loi == 0)
+{
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        showSuccess('Thêm khách hàng thành công')
+    });
+</script>
+}
+
+
+
+<style>
+    :root {
+        --font-size: 16px;
+    }
+
+    .form-select {
+        font-size: var(--font-size);
+    }
+
+    .form-control {
+        font-size: var(--font-size);
+    }
+</style>
+
+<div class="container">
+    <div class="grid">
+        <h3 class="header-h3">Thêm khách hàng mới</h3>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal" style="font-size: 14px;">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row mb-3">
+                    <label for="TENKH" class="col-md-2 col-form-label">Họ và Tên</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TENKH, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập họ và tên" } })
+                        @Html.ValidationMessageFor(model => model.TENKH, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <!-- Giới tính -->
+                <div class="row mb-3">
+                    <label for="gioitinh" class="col-md-2 col-form-label">Giới tính</label>
+                    <div class="col-md-10">
+                        <select class="form-select" id="gioitinh" name="gioitinh">
+                            <option selected>--Chọn giới tính--</option>
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Ngày sinh -->
+                <div class="row mb-3">
+                    <label for="NGSINH" class="col-md-2 col-form-label">Ngày sinh</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NGSINH, new { htmlAttributes = new { @class = "form-control", type = "date", @name = "ngsinh" } })
+                        @Html.ValidationMessageFor(model => model.NGSINH, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Số điện thoại -->
+                <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Số điện thoại</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập số điện thoại", type = "tel" } })
+                        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <!-- Email -->
+                <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Email</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập email" } })
+                        @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <!-- Số CCCD -->
+                <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Số CCCD</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SOCCCD, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập số CCCD" } })
+                        @Html.ValidationMessageFor(model => model.SOCCCD, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <!-- Quốc tịch -->
+                <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Quốc tịch</label>
+                    <div class="col-md-10">
+                        <select id="countrySelect" class="form-select" name="Quoctich">
+                            <option value="">--Chọn Quốc Gia--</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="row">
+                    <div class="col-md-10 offset-md-2">
+                        <button type="submit" class="btn1 btn--primary">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+<script>
+    async function loadCountries() {
+        const url = 'https://restcountries.com/v3.1/all';
+
+        try {
+            const response = await fetch(url);
+            const countries = await response.json();
+
+            const selectElement = document.getElementById('countrySelect');
+
+            countries.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.name.common;
+                option.textContent = country.name.common;
+                selectElement.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Lỗi khi lấy dữ liệu quốc gia:', error);
+        }
+    }
+
+    window.onload = loadCountries;
+</script>

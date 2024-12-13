@@ -1,0 +1,143 @@
+﻿@model QL_KHACHSAN.Models.CTHD
+@using QL_KHACHSAN.Models
+
+@{
+    ViewBag.Title = "DatPhong";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+    PHONG ph = ViewBag.ph != null ? ViewBag.ph : "Còn phòng";
+}
+
+<style>
+    .form-control {
+        font-size: var(--font-size);
+        margin: 0 0 12px;
+    }
+
+    .control-label {
+        font-size: calc(var(--font-size) - 3px);
+        width: 100%
+    }
+</style>
+
+<div class="container">
+    <div class="grid">
+        @if (ph.TINHTRANG == "Đang sử dụng")
+        {
+            <h3 class="header-h3">Phòng đã được đặt</h3>
+        }
+        else
+        {
+            using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h3 class="header-h3">Xác nhận đặt phòng</h3>
+                <div style="display: flex; justify-content: space-between;">
+                    <div class="left" style="width: 400px">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <input type="hidden" value="@ph.MAPH" name="maphong" />
+                        <div class="form-group">
+                            <span class="control-label col-md-2">Ngày nhận phòng</span>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.NGAYNHAN, new { htmlAttributes = new { @class = "form-control", type = "date", id = "input1", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.NGAYNHAN, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="control-label col-md-2">Ngày trả phòng</span>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.NGAYTRA, new { htmlAttributes = new { @class = "form-control", type = "date", id = "input2", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.NGAYTRA, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="control-label col-md-2">Số khách lưu trú</span>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control", type = "number", required = "required", min = "1", value = "1" } })
+                                @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10" style="display: flex; justify-content: space-between;">
+                                <a href="/Home/QL_DatPhong" class="btn1 btn--normal">Trở lại</a>
+                                <input type="submit" value="Thêm" class="btn1 btn--primary" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right" style="flex: 1;">
+                        <span style="font-size: 16px">Thông tin phòng</span>
+                        <hr />
+                        <style>td{padding: 6px;}</style>
+                        <table class="info-phong" style="list-style: none; background-color: var(--base-color); color: var(--text-color); font-size: 13px; min-width: 200px; padding: 6px; border-radius: 6px; box-shadow: 0 1px 3px #ccc; z-index: 3">
+                            <tr>
+                                <td>Tên phòng:</td>
+                                <td>@ph.TENPH</td>
+                            </tr>
+                            <tr>
+                                <td>Tên loại phòng:</td>
+                                <td>@ph.LOAIPHONG.TENLOAI</td>
+                            </tr>
+                            <tr>
+                                <td>Số giường:</td>
+                                <td>@ph.SOGIUONG</td>
+                            </tr>
+                            <tr>
+                                <td>Số lượng chứa:</td>
+                                <td>@ph.SLCHUA</td>
+                            </tr>
+                            <tr>
+                                <td>Giá phòng:</td>
+                                <td>@String.Format("{0:N0}", ph.GIAPHONG) VND</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            }
+        }
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const input1 = document.getElementById("input1");
+    const input2 = document.getElementById("input2");
+    const now = new Date();
+    const today = new Date(now.getTime() + 7 * 60 * 60 * 1000).toISOString().split("T")[0];
+
+
+    // Ràng buộc input1 phải >= hôm nay
+    input1.setAttribute("min", today);
+
+    // Sự kiện thay đổi giá trị input1
+    input1.addEventListener("change", () => {
+        const startDate = input1.value;
+        input2.setAttribute("min", startDate); // Ngày kết thúc phải >= ngày bắt đầu
+    });
+
+    // Sự kiện thay đổi giá trị input2
+    input2.addEventListener("change", () => {
+        const startDate = input1.value;
+        const endDate = input2.value;
+
+        if (new Date(startDate) >= new Date(endDate)) {
+            alert("Ngày kết thúc phải lớn hơn ngày bắt đầu.");
+            input2.value = ""; // Xóa giá trị không hợp lệ
+        }
+    });
+
+    // Xử lý submit form
+    document.getElementById("dateForm").addEventListener("submit", (e) => {
+        if (new Date(input1.value) >= new Date(input2.value)) {
+            e.preventDefault();
+            alert("Vui lòng chọn ngày kết thúc lớn hơn ngày bắt đầu.");
+        }
+    });
+});
+
+</script>

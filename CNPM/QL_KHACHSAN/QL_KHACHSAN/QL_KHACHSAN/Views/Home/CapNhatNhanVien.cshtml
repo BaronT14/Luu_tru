@@ -1,0 +1,95 @@
+﻿@model QL_KHACHSAN.Models.NHANVIEN
+
+@{
+    ViewBag.Title = "CapNhatNhanVien";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+}
+
+<style>
+    :root {
+        --font-size: 16px;
+    }
+
+    .form-select {
+        font-size: var(--font-size);
+    }
+
+    .form-control {
+        font-size: var(--font-size);
+    }
+</style>
+
+<div class="container">
+    <div class="grid">
+        <h3 class="header-h3">Cập nhật thông tin nhân viên</h3>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal" style="font-size: 14px;">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MANV)
+            <div class="row mb-3">
+                <label for="TENKH" class="col-md-2 col-form-label">Họ và Tên</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TENNV, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập họ và tên" } })
+                    @Html.ValidationMessageFor(model => model.TENNV, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!-- Giới tính -->
+            <div class="row mb-3">
+                <label for="bophan" class="col-md-2 col-form-label">Bộ phân</label>
+                <div class="col-md-10">
+                    <select class="form-select" id="gioitinh" name="mapb">
+                        <option selected>--Chọn bộ phận--</option>
+                        @foreach (var i in ViewBag.bp)
+                        {
+                            <option value="@i.MABP">@i.TENBP</option>
+                        }
+
+                    </select>
+                </div>
+            </div>
+
+            <!-- Số điện thoại -->
+            <div class="row mb-3">
+                <label class="col-md-2 col-form-label">Số điện thoại</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SODT, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập số điện thoại", type = "tel" } })
+                    @Html.ValidationMessageFor(model => model.SODT, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!-- Số CCCD -->
+            <div class="row mb-3">
+                <label class="col-md-2 col-form-label">Số CCCD</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập số CCCD" } })
+                    @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-md-2 col-form-label">Tên đăng nhập</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" name="tendn" value="@ViewBag.tk.TENDN"/>
+
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-md-2 col-form-label">Mật khẩu</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="password" name="mk" value="@ViewBag.tk.MK"/>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="row">
+                <div class="col-md-10 offset-md-2">
+                    <button type="submit" class="btn1 btn--primary">Cập nhật</button>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

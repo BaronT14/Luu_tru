@@ -1,0 +1,72 @@
+﻿@model IEnumerable<QL_KHACHSAN.Models.NHANVIEN>
+
+@{
+    ViewBag.Title = "DanhSachNhanVien";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+}
+
+
+<style>
+    th {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    td {
+        font-size: 13px;
+    }
+</style>
+<div class="container">
+    <div class="grid">
+        <h3 class="header-h3">Danh sách nhân viên</h3>
+
+        <p>
+            <a href="/Home/ThemNhanVien" class="btn1 btn--primary">Thêm nhân viên mới</a>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Mã nhân viên
+                </th>
+                <th>
+                    Họ và Tên
+                </th>
+                <th>
+                    Bộ phận
+                </th>
+                <th>
+                    Số điện thoại
+                </th>
+                <th>
+                    Số CCCD
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MANV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENNV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BOPHAN.TENBP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SODT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CMND)
+                </td>
+                <td>
+                    @Html.ActionLink("Cập nhật", "CapNhatNhanVien", new { manv = item.MANV }) |
+                    @Html.ActionLink("Xoá", "XoaNhanVien", new { manv = item.MANV })
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>

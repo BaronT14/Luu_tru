@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DaiLyBanNuoc.Models.SanPham>
+@using DaiLyBanNuoc.Models
+@{ 
+    List<GioHang> giohang = Session["GioHang"] as List<GioHang>;
+    int sl = giohang != null ? giohang.Count : 0;
+}
+
+<style>
+    .header__cart-list-btn a{
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+        color: var(--white-color);
+        font-weight: 300;
+        background-color: var(--primary-color);
+        border: none;
+        padding: 12px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+</style>
+
+<i class="header__cart-icon fa-solid fa-cart-shopping"></i>
+<div class="header__cart-icon-qnt">@sl</div>
+<!-- header__cart-list--empty: class cart empty -->
+@if(sl == 0)
+{
+<div class="header__cart-list header__cart-list--empty">
+    <div class="header__cart-list-empty-wrap">
+        <img src="~/assests/image/no-cart.png" alt="" class="header__cart-list-img">
+        <p class="header__cart-list-empty-msg">Chưa có sản phẩm</p>
+    </div>
+</div>
+}
+else
+{
+    <div class="header__cart-list">
+        <h3 class="header__cart-list-heading">Sản phẩm mới thêm</h3>
+        <ul class="header__cart-list-item">
+            @foreach (var item in giohang)
+            {
+                <li class="header__cart-item" style="cursor: pointer" onclick="location.href='/Home/ChiTietSP_1?masp=@item.SP.MaSP'">
+                    <img src="@item.SP.Anh" alt="" class="header__cart-item-img">
+                    <div class="header__cart-item-info">
+                        <h4 class="header__cart-item-name">@item.SP.TenSP</h4>
+                        <div class="header__cart-price-wrap">
+                            <span class="header__cart-price-unit">đ</span>
+                            <div class="header__cart-price">@String.Format("{0:N0}", item.SP.GiaBan) x @item.SL</div>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+        <div class="header__cart-list-btn">
+            <a href="/Home/ht_GioHang_Full">Xem giỏ hàng</a>
+        </div>
+    </div>
+}

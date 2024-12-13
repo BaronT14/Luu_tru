@@ -1,0 +1,58 @@
+﻿@model IEnumerable<QL_KHACHSAN.Models.DICHVU>
+
+@{
+    ViewBag.Title = "Danh sách dịch vụ";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+}
+
+<style>
+    th {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    td {
+        font-size: 13px;
+    }
+</style>
+<div class="container">
+    <div class="grid">
+        <h3 class="header-h3">Danh sách dịch vụ</h3>
+
+        <p>
+            <a href="/Home/ThemDichVu_ds" class="btn1 btn--primary">Thêm dịch vụ mới</a>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Mã dịch vụ
+                </th>
+                <th>
+                    Tên dịch vụ
+                </th>
+                <th>
+                    Giá dịch vụ
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MADV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TENDV)
+                    </td>
+                    <td>
+                        @String.Format("{0:N0}", item.GIADV)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Xoá", "XoaDichVu", new { madv = item.MADV })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

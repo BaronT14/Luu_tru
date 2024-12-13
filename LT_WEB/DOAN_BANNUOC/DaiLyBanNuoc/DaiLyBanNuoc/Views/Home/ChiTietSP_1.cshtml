@@ -1,0 +1,91 @@
+﻿@model DaiLyBanNuoc.Models.SanPham
+
+@{
+    ViewBag.Title = "ChiTietSP_1";
+    Layout = "~/Views/Shared/BN_LayoutPage.cshtml";
+}
+<style>
+    :root{
+        --font-size: 16px;
+    }
+    dt{
+        font-size: var(--font-size);
+    }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        display: flex;
+        align-items: flex-start;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .product-image {
+        max-width: 40%;
+    }
+
+        .product-image img {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+    .product-info {
+        max-width: 60%;
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+        .product-info h4 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .product-info dl {
+            margin: 0;
+        }
+
+        .product-info dt {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .product-info dd {
+            margin: 12px 0 12px 0;
+            padding-left: 15px;
+            color: #333;
+            font-size: calc(var(--font-size) + 3px);
+        }
+
+</style>
+
+<div class="container">
+    <div class="product-image">
+        <img src="@Html.DisplayFor(model => model.Anh)" alt="Product Image">
+    </div>
+    <div class="product-info">
+        <h4>@Html.DisplayFor(model => model.TenSP)</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Giá bán</dt>
+            <dd>@String.Format("{0:N0}", Model.GiaBan) VNĐ</dd>
+
+            <dt>Đơn vị tính</dt>
+            <dd>@Html.DisplayFor(model => model.DonViTinh)</dd>
+
+            <dt>Số lượng tồn</dt>
+            <dd>@Html.DisplayFor(model => model.SoLuongTon)</dd>
+
+            <dt>Mô tả</dt>
+            <dd>@Html.DisplayFor(model => model.MoTa)</dd>
+        </dl>
+    </div>
+</div>

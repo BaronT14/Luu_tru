@@ -1,0 +1,29 @@
+﻿@model IEnumerable<QL_KHACHSAN.Models.PHONG>
+
+<ul style="list-style: none; font-size: 13px; font-weight: 600;display: flex; flex-wrap: wrap;">
+    @foreach (var item in Model)
+    {
+        <li class="phong-item" style="margin: 0 12px; position: relative;">
+            <a href="/Home/DatPhong?maphong=@item.MAPH" style="text-decoration: none; color: var(--text-color)">
+                <img src="~/assest/img/house-icon.png" style="height: 90px" />
+                <div style="text-align: center; margin-left: -12px">
+                    @if (item.TINHTRANG == "Còn trống")
+                    {
+                        <img class="img-status" src="~/assest/img/Green_icon.png" style="margin-top: -4px" />
+                    }
+                    else
+                    {
+                        <img class="img-status" src="~/assest/img/Red_icon.png" style="margin-top: -4px" />
+                    }
+                    @item.TENPH
+                </div>
+            </a>
+            <ul class="info-phong" style="list-style: none; display: none; background-color: #fff; color: var(--text-color); font-size: 13px; position: absolute; top: -35px; right: -160px;  min-width: 200px; padding: 6px; border-radius: 6px; box-shadow: 0 1px 3px #ccc; z-index: 3">
+                <li>Loại phòng:      @item.LOAIPHONG.TENLOAI</li>
+                <li>Số giường phòng: @item.SOGIUONG</li>
+                <li>Số lượng chứa:   @item.SLCHUA</li>
+                <li>Giá:             @String.Format("{0:N0}", item.GIAPHONG) VND</li>
+            </ul>
+        </li>
+    }
+</ul>

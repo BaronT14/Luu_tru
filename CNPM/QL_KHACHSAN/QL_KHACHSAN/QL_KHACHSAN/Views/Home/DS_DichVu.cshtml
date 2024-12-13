@@ -1,0 +1,138 @@
+﻿@model IEnumerable<QL_KHACHSAN.Models.CTDV>
+@using QL_KHACHSAN.Models
+@{
+    ViewBag.Title = "Thêm dịch vụ";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+    var dsdv = Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.dsdv);
+    List<CTDV> ctdv = Session["ctdv"] as List<CTDV>;
+    object xtc = TempData["KQ_XOA_ALL"];
+    object ttc = TempData["KQ_THEM_DV"];
+}
+
+@if (xtc != null)
+{
+    <script>
+        window.onload = function () {
+            showSuccess("Xoá thành công");
+        }</script>
+}
+
+@if (ttc != null)
+{
+    <script>
+        window.onload = function () {
+            showSuccess("Thêm thành công");
+        }</script>
+}
+
+<div class="container">
+    <div class="grid">
+
+        <h3 class="header-h3">Thêm dịch vụ</h3>
+
+        <div class="hopTim" style="display: inline-block; position: relative; margin-bottom: 32px;">
+            <input id="dv" class="form-control-lg txtTim" type="text" placeholder="Nhập tên hoặc mã dịch vụ" aria-label="default input example" onkeyup="showSuggestions(this.value)" style="width: 432px; margin-right: 16px; padding: 6px">
+            <ul id="suggestions" style="list-style: none; position: absolute; top: 40px; left: 0; width: 432px; background: white; border: 1px solid #ccc; padding: 0; display: none; font-size: 14px"></ul>
+            <input onkeyup="sl(this.value)" class="form-control-lg" type="number" placeholder="Số lượng" aria-label="default input example" style="width: 90px; margin-right: 16px; padding: 6px">
+            <a id="btnthem" class="btn1 btn--primary">Thêm</a>
+        </div>
+
+        @if (ctdv == null)
+        {
+            <h3 class="header-h3" style="font-size: 16px; font-weight: 300">Danh sách trống</h3>
+        }
+        else
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        Mã dịch vụ
+                    </th>
+                    <th>
+                        Tên dịch vụ
+                    </th>
+                    <th>
+                        Giá dịch vụ
+                    </th>
+                    <th>
+                        Số lượng
+                    </th>
+                    <th>
+                        Thành tiền
+                    </th>
+                    <th>
+                        <a href="/Home/XoaCTDV_all">Xoá tất cả</a>
+                    </th>
+                </tr>
+                @foreach (var item in ctdv)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MADV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DICHVU.TENDV)
+                        </td>
+                        <td>
+                            @String.Format("{0:N0}", @item.DICHVU.GIADV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SOLUONG)
+                        </td>
+                        <td>@String.Format("{0:N0}", (@item.SOLUONG * @item.DICHVU.GIADV))</td>
+                        <td>
+                            @Html.ActionLink("Xoá", "XoaCTDV", new { madv = item.MADV })
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        <a href="/Home/ds_Cho" class="btn1 btn--primary">Xong</a>
+    </div>
+
+</div>
+<script>
+    const customer = JSON.parse('@Html.Raw(dsdv)');
+
+    const customers = customer.map(customer =>
+        `${customer}`
+    );
+    let link = '';
+    function showSuggestions(query) {
+        const suggestionBox = document.getElementById("suggestions");
+        suggestionBox.innerHTML = ""; // Xóa gợi ý cũ
+        if (!query) {
+            suggestionBox.style.display = "none";
+            return;
+        }
+
+        // Lọc kết quả
+        const matches = customers.filter(customer =>
+            customer.toLowerCase().includes(query.toLowerCase())
+        );
+
+        // Tạo danh sách gợi ý
+        matches.forEach(match => {
+            const li = document.createElement("li");
+            li.textContent = match;
+            li.style.padding = "10px";
+            li.style.cursor = "pointer";
+
+            // Gán giá trị vào ô input khi chọn
+            li.onclick = function () {
+                document.querySelector(".txtTim").value = match;
+                document.getElementById('btnthem').href = `/Home/ThemDichVu?dv=${match}`;
+                suggestionBox.style.display = "none";
+                link = `/Home/ThemDichVu?dv=${match}`;
+            };
+
+            suggestionBox.appendChild(li);
+        });
+        suggestionBox.style.display = matches.length ? "block" : "none";
+    }
+
+    function sl(value) {
+        document.getElementById('btnthem').href = `${link}&sl=${value}`;
+    }
+</script>

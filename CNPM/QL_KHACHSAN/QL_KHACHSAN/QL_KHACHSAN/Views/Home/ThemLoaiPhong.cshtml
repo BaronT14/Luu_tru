@@ -1,0 +1,59 @@
+﻿@model QL_KHACHSAN.Models.LOAIPHONG
+
+@{
+    ViewBag.Title = "Thêm loại phòng";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+}
+<style>
+
+    .form-select {
+        font-size: var(--font-size);
+    }
+
+    .form-control{
+        font-size: var(--font-size);
+    }
+
+    .control-label {
+        font-size: calc(var(--font-size) - 3px);
+        width: 100%
+    }
+    .btn1{margin: 32px 0;}
+</style>
+<div class="container">
+    <div class="grid">
+        <h3 class="header-h3">Thêm loại phòng</h3>
+
+        @using (Html.BeginForm()) 
+        {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-horizontal">
+                <h4>Loại phòng</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class = "control-label col-md-2">Tên loại phòng</div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TENLOAI, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TENLOAI, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2">Mô tả loại phòng</div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.MOTA, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MOTA, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Thêm" class="btn1 btn--primary" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

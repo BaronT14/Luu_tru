@@ -1,0 +1,7 @@
+﻿@model IEnumerable<QL_KHACHSAN.Models.LOAIPHONG>
+
+    <li><a href="/Home/QL_DatPhong" class="_ht-link">Tất cả</a></li>
+@foreach (var item in Model)
+{
+    <li><a href="/Home/ht_Phong_Loai?MaLoai=@item.MALOAI" class="_ht-link">@item.TENLOAI</a></li>
+}

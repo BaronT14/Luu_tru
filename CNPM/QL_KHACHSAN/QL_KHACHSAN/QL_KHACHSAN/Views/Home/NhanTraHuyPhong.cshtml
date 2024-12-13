@@ -1,0 +1,160 @@
+﻿@model IEnumerable<QL_KHACHSAN.Models.CTHD>
+@using QL_KHACHSAN.Models
+@{
+    ViewBag.Title = "NhanTraHuyPhong";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+    List<CTDV> ctdv = ViewBag.ctdv;
+    HOADON hd = ViewBag.hd;
+}
+
+
+<style>
+    select.form-select {
+        display: block;
+        width: fit-content;
+        min-width: 142px;
+        margin: 16px 0;
+        font-size: 13px;
+        padding: 8px;
+    }
+    .table{
+        margin-bottom: 64px;
+    }
+    a{
+        color: var(--text-color);
+        padding: 6px;
+        text-decoration: none;
+        display: block;
+    }
+    a:hover {
+        background-color: #e7e7e7;
+        border-radius: 6px;
+    }
+    .info-phong::after{
+        content: "";
+        display:block;
+        height:10px;
+        width: 100%;
+        position: absolute;
+        bottom: -12px;
+    }
+</style>
+
+<div class="container">
+    <div class="grid wide">
+        <h3 class="header-h3" style="font-size: 14px; ">CHI TIẾT PHÒNG</h3>
+        <table class="table">
+            <tr>
+                <th>
+                    Mã phòng
+                </th>
+                <th>
+                    Ngày nhận
+                </th>
+                <th>
+                    Ngày trả
+                </th>
+                <th>
+                    Số khách
+                </th>
+                <th>
+                    Tình trạng
+                </th>
+                <th>
+                    Thành tiền
+                </th>
+                <th>
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td class="phong-item" style="position: relative; cursor: pointer;">
+                        @Html.DisplayFor(modelItem => item.PHONG.TENPH)
+                        <ul class="info-phong" style="list-style: none; display: none; background-color: #fff; color: var(--text-color); font-size: 13px; position: absolute; top: -35px; right: -160px;  min-width: 200px; padding: 6px; border-radius: 6px; box-shadow: 0 1px 3px #ccc; z-index: 3">
+                            <li>Loại phòng:      @item.PHONG.LOAIPHONG.TENLOAI</li>
+                            <li>Số giường phòng: @item.PHONG.SOGIUONG</li>
+                            <li>Số lượng chứa:   @item.PHONG.SLCHUA</li>
+                            <li>Giá:             @String.Format("{0:N0}", item.PHONG.GIAPHONG) VND</li>
+                        </ul>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGAYNHAN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGAYTRA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SOLUONG)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TINHTRANG)
+                    </td>
+                    <td>@String.Format("{0:N0}", @item.THANHTIEN)</td>
+                    <td style="position: relative" class="phong-item">
+                        <i class="fa-solid fa-ellipsis" style="font-size: 16px; cursor: pointer;"></i>
+                        <ul class="info-phong" style="list-style: none; display: none; background-color: #fff; color: var(--text-color); font-size: 13px; position: absolute; bottom: 16px; right: 0;  min-width: 150px; padding: 0; border-radius: 6px; box-shadow: 0 1px 3px #ccc; z-index: 3">
+                            @if (item.TINHTRANG == null)
+                            {
+                                <li>@Html.ActionLink("Nhận phòng", "NhanPhong", new { maph = item.MAPH, mahd = hd.MAHD })</li>
+                                <li>@Html.ActionLink("Huỷ phòng", "NhanPhong", new { maph = item.MAPH, mahd = hd.MAHD })</li>
+                            }
+                            @if (item.TINHTRANG == "Đã nhận phòng")
+                            {
+                                <li>@Html.ActionLink("Trả phòng", "TraPhong", new { maph = item.MAPH, mahd = hd.MAHD })</li>
+                                <li>@Html.ActionLink("Trả phòng sau 24h", "NhanPhong", new { maph = item.MAPH, mahd = hd.MAHD })</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </table>
+        <h3 class="header-h3" style="font-size: 14px;">CHI TIẾT DỊCH VỤ</h3>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    Mã dịch vụ
+                </th>
+                <th>
+                    Tên dịch vụ
+                </th>
+                <th>
+                    Giá dịch vụ
+                </th>
+                <th>
+                    Số lượng
+                </th>
+                <th>
+                    Thành tiền
+                </th>
+                <th>
+
+                </th>
+            </tr>
+            @foreach (var item in ctdv)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MADV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DICHVU.TENDV)
+                    </td>
+                    <td>
+                        @String.Format("{0:N0}", @item.DICHVU.GIADV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SOLUONG)
+                    </td>
+                    <td>@String.Format("{0:N0}", (@item.SOLUONG * @item.DICHVU.GIADV))</td>
+                    <td>
+                        @*@Html.ActionLink("Xoá", "xoa_donDat", new { idtour = item.CTHD., id = item.CTHD.MAHD})*@
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

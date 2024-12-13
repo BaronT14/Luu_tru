@@ -1,0 +1,127 @@
+﻿@model IEnumerable<DaiLyBanNuoc.Models.DonHang>
+
+@{
+    ViewBag.Title = "HoaDon";
+    Layout = "~/Views/Shared/BN_LayoutPage.cshtml";
+}
+
+<style>
+    /* Đặt toàn bộ bảng */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 16px;
+        text-align: left;
+        background-color: #fff;
+    }
+
+        /* Định dạng hàng tiêu đề */
+        .table th {
+            background-color: #f5f5f5;
+            padding: 10px;
+            font-weight: bold;
+            border-bottom: 2px solid #ddd;
+            text-align: center;
+        }
+
+        /* Định dạng ô dữ liệu */
+        .table td {
+            padding: 15px;
+            vertical-align: middle;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+
+            /* Căn chỉnh ảnh sản phẩm */
+            .table td img {
+                width: 80px;
+                height: auto;
+                display: block;
+                margin: 0 auto;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+
+            /* Định dạng liên kết "Xoá" */
+            .table td a {
+                color: red;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+                .table td a:hover {
+                    text-decoration: underline;
+                }
+
+    /* Định dạng nút tăng/giảm số lượng (nếu thêm sau) */
+    .input-quantity {
+        display: inline-flex;
+        align-items: center;
+    }
+
+        .input-quantity input {
+            width: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+            height: 30px;
+        }
+
+        .input-quantity button {
+            width: 80px;
+            height: 30px;
+            border: 1px solid #ddd;
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+
+            .input-quantity button:hover {
+                background-color: #ddd;
+            }
+</style>
+
+<table class="table">
+    <tr>
+        <th>
+            Mã hoá đơn
+        </th>
+        <th>
+            Ngày đặt
+        </th>
+        <th>
+            Ngày Giao
+        </th>
+        <th>
+            Tình trạng
+        </th>
+        <th>
+            Thành tiền
+        </th>
+        <th>Thao tác</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaDonHang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayDat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayGiao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TinhTrang)
+        </td>
+        <td>
+            @String.Format("{0:N0}", item.TongTien)
+        </td>
+        <td>
+            @Html.ActionLink("Chi tiết", "ChiTietDH", new { madh = item.MaDonHang })
+        </td>
+    </tr>
+}
+
+</table>

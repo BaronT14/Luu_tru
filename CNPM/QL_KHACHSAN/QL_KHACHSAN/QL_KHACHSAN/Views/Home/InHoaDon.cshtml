@@ -1,0 +1,230 @@
+﻿@using QL_KHACHSAN.Models
+@{
+    Layout = null;
+    HOADON hd = ViewBag.hd as HOADON;
+    List<CTHD> cthd = ViewBag.cthd as List<CTHD>;
+    List<CTDV> ctdv = ViewBag.ctdv as List<CTDV>;
+    NHANVIEN nv = Session["DN"] as NHANVIEN;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hóa Đơn</title>
+    <style>
+        @@page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            width: 210mm;
+            height: 297mm;
+            position: relative;
+        }
+        .container {
+            height: 297mm;
+            width: 100%;
+            max-width: 210mm;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fdfffe;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #eeeff1;
+        }
+        .header-left img {
+            height: 50px;
+        }
+        .header-center {
+            text-align: center;
+        }
+        .header-center h1 {
+            font-size: 30px;
+            color: var(--header-text-color);
+            margin: 0;
+        }
+        .header-center p {
+            color: #555;
+            font-size: 14px;
+        }
+        .header-right {
+            text-align: right;
+        }
+        .header-right p {
+            color: var(--header-text-color);
+            font-size: 14px;
+            text-align: right;
+        }
+        .customer-info {
+            margin-top: 6px;
+            font-size: 16px;
+            padding-left: 0px;
+            padding-bottom: 10px;
+        }
+        .customer-info p {
+            margin: 12px 0;
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .title h2 {
+            font-size: 36px;
+            color: #FF5A5F;
+            margin: 0;
+        }
+        .table-container {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        .summary {
+            font-size: 18px;
+            text-align: right;
+            margin: 5px 0;
+        }
+        .footer {
+            font-size: 14px;
+            margin-top: 30px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #eeeff1;
+        }
+        :root{
+            --header-text-color: #2d3446;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+        <header>
+            <div class="header-left">
+                <img src="~/assest/img/logo.png" alt="Khách Sạn Hùng Long">
+            </div>
+            <div class="header-center" style="color: var(--header-text-color);">
+                <h1>KHÁCH SẠN</br>HÙNG LONG</h1>
+                <p>hunglonghotel.vn</p>
+            </div>
+            <div class="header-right">
+                <p>ĐẠI HỌC CÔNG THƯƠNG TP.HCM</p>
+                <p>0 765 084 233</p>
+                <p>140 Lê Trọng Tấn</p>
+            </div>
+        </header>
+
+        <div style="padding: 20px;">
+            <div class="title__main" style="display: flex; justify-content: space-between;">
+                <!-- Customer Information -->
+                <div class="customer-info" style="text-align: left;">
+                    <p><strong>Tên khách hàng:</strong> @hd.KHACHHANG.TENKH</p>
+                    <p><strong>Số điện thoại:</strong> @hd.KHACHHANG.SDT</p>
+                    <p><strong>Tên nhân viên:</strong> @nv.TENNV</p>
+                </div>
+
+                <!-- Title -->
+                <div class="title" style="text-align: right;">
+                    <h2>HÓA ĐƠN</h2>
+                    <p>Hoá đơn #@hd.MAHD</p>
+                    <p>Ngày đặt đơn: <span>@hd.NGAYDAT</span></p>
+                    <p>Ngày thanh toán: <span>@hd.NGAYTHANHTOAN</span></p>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tên dịch vụ</th>
+                            <th>Số lượng/Thời gian thuê</th>
+                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var i in cthd)
+                        {
+                            <tr>
+                                <td>@i.PHONG.TENPH</td>
+                                <td>@i.NGAYNHAN.Value.Date.ToString("dd/MM/yyyy") - @i.NGAYTRA.Value.Date.ToString("dd/MM/yyyy")</td>
+                                <td style="text-align: right;">@String.Format("{0:N0}", i.PHONG.GIAPHONG)</td>
+                                <td style="text-align: right;">@String.Format("{0:N0}", i.THANHTIEN)</td>
+                            </tr>
+                        }
+                        @if(ctdv != null)
+                        {
+                            foreach (var i in ctdv)
+                            {
+                                <tr>
+                                    <td>@i.DICHVU.TENDV</td>
+                                    <td>@i.SOLUONG</td>
+                                    <td style="text-align: right;">@String.Format("{0:N0}", i.DICHVU.GIADV)</td>
+                                    <td style="text-align: right;">@String.Format("{0:N0}", i.DICHVU.GIADV * i.SOLUONG)</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Summary -->
+            <div class="summary">
+                <p><strong>Tổng cộng:</strong> @String.Format("{0:N0}", hd.TONGTIEN) VND</p>
+                <p><strong>Phương thức: </strong>@hd.PHUONGTHUCTHANHTOAN.TENPT</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer" style="display: flex; justify-content: space-between;">
+            <div style="padding: 20px;">
+                <p><strong>THÔNG TIN THANH TOÁN</strong></p>
+                <p>Ngân hàng HUIT</p>
+                <p>Tên tài khoản: Khách sạn Hùng Long</p>
+                <p>Số tài khoản: xxx-xxx-xxxx</p>
+            </div>
+            <div style="padding: 20px; text-align: center;">
+                <p><strong>Chữ ký nhân viên</strong></p>
+                <br>
+                <br>
+                <br>
+                <p>@nv.TENNV</p>
+            </div>
+            <div style="padding: 20px; text-align: center;">
+                <p><strong>Chữ ký khách hàng</strong></p>
+                <br>
+                <br>
+                <br>
+                <p>Ghi rõ họ và tên</p>
+            </div>
+        </div>
+
+    </div>
+    <script>window.print()</script>
+</body>
+</html>
+

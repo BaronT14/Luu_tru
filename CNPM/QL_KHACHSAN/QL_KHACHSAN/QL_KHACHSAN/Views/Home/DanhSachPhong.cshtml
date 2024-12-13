@@ -1,0 +1,84 @@
+﻿@model IEnumerable<QL_KHACHSAN.Models.PHONG>
+
+@{
+    ViewBag.Title = "Danh sách phòng";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+}
+
+
+<style>
+    th {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    td {
+        font-size: 13px;
+    }
+</style>
+<div class="container">
+    <div class="grid">
+        <h3 class="header-h3">Danh sách phòng</h3>
+
+        <p>
+            <a href="/Home/ThemPhong" class="btn1 btn--primary">Thêm phòng mới</a>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Mã phòng
+                </th>
+                <th>
+                    Loại phòng
+                </th>
+                <th>
+                    Tầng
+                </th>
+                <th>
+                    Số giường
+                </th>
+                <th>
+                    Số lượng chứa
+                </th>
+                <th>
+                    Giá phòng
+                </th>
+                <th>
+                    Tình trạng
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MAPH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LOAIPHONG.TENLOAI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TANG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SOGIUONG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SLCHUA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GIAPHONG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TINHTRANG)
+                </td>
+                <td>
+                    @Html.ActionLink("Cập nhật", "CapNhatPhong", new { maph = item.MAPH }) |
+                    @Html.ActionLink("Xoá", "XoaPhong", new { maph = item.MAPH })
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>

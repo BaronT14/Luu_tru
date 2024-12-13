@@ -1,0 +1,314 @@
+﻿@model QL_KHACHSAN.Models.KHACHHANG
+@using QL_KHACHSAN.Models
+@{
+    ViewBag.Title = "ThanhToan";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+    var dsct = ViewBag.dsct;
+    var dsdv = ViewBag.ctdv;
+    if (dsdv == null) { dsdv = new List<CTDV>(); }
+    object kq_tao_hd = TempData["KQ_TAO_HD"];
+    object kq_taohd_tt = TempData["tt"];
+    List<PHUONGTHUCTHANHTOAN> pttt = ViewBag.pttt;
+    HOADON hd = ViewBag.hoadon;
+    Object tb = null;
+    if(TempData["ThongBao"] != null)
+    {
+        tb = TempData["ThongBao"].ToString();
+    }
+    List<CHITIETKH> dskh = ViewBag.ctkh;
+}
+
+@if (kq_tao_hd != null)
+{
+    <script>
+        window.onload = function () {
+            showDanger("Tạo hoá đơn thất bại");
+        }</script>
+}
+
+@if (kq_taohd_tt != null)
+{
+    <script>
+        window.onload = function () {
+            showSuccess("Tạo hoá đơn thành công");
+        }</script>
+}
+
+<style>
+
+    .form-select {
+        font-size: var(--font-size);
+    }
+
+    .form-control, .form-control1 {
+        font-size: var(--font-size);
+    }
+
+    .form-control1 {
+        text-align: right;
+        box-shadow: 0 1px 3px #ccc;
+        border-radius: 6px;
+        outline: none;
+        border: 1px solid #ccc;
+        font-size: var(--font-size);
+        padding: 6px;
+    }
+
+    .col-form-label {
+        font-size: calc(var(--font-size) - 3px);
+        width: 100%
+    }
+
+    .row {
+        display: flex;
+    }
+
+    .container__thanhtoan {
+        display: flex;
+    }
+
+    .container__left {
+        width: 60%;
+    }
+
+    .container__right {
+        flex: 1;
+    }
+
+    .btn1 {
+        width: 45%;
+        box-shadow: 0 1px 3px #ccc;
+        margin: 12px 0;
+    }
+</style>
+
+<div class="container">
+    <h3 class="header-h3">
+        <i class="fa-solid fa-credit-card"></i>
+        Thanh toán
+    </h3>
+    <h3 class="header-h3" style="font-size: 13px; font-weight:400;">
+        Kiểm tra thông tin trước khi thanh toán
+    </h3>
+    <div class="grid container__thanhtoan">
+        <div class="container__left">
+            <span style="font-size: calc(var(--font-size) + 3px); color: var(--text-color)">Thông tin khách hàng</span>
+            <hr />
+            <div class="row mb-3">
+                <div class="col-md-7">
+                    <label for="TENKH" class="col-md-2 col-form-label">Họ và Tên</label>
+                    @Html.EditorFor(model => model.TENKH, new { htmlAttributes = new { @class = "form-control", value = Model.TENKH } })
+                </div>
+                <div class="col-md-3">
+                    <label for="gioitinh" class="col-md-2 col-form-label">Giới tính</label>
+                    @Html.EditorFor(model => model.GTINH, new { htmlAttributes = new { @class = "form-control", value = Model.GTINH } })
+                </div>
+            </div>
+
+            <!-- Ngày sinh -->
+            <div class="row mb-3">
+                <div class="col-md-10">
+                    <label for="NGSINH" class="col-md-2 col-form-label">Ngày sinh</label>
+                    @Html.EditorFor(model => model.NGSINH, new { htmlAttributes = new { @class = "form-control", Value = Model.NGSINH } })
+                </div>
+            </div>
+
+            <!-- Số điện thoại -->
+            <div class="row mb-3">
+                <div class="col-md-5">
+                    <label class="col-md-2 col-form-label">Số điện thoại</label>
+                    @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", value = Model.SDT } })
+                </div>
+                <div class="col-md-5">
+                    <label class="col-md-2 col-form-label">Email</label>
+                    @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", value = Model.EMAIL } })
+                </div>
+            </div>
+            <!-- Số CCCD -->
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="col-md-2 col-form-label">Số CCCD</label>
+                    @Html.EditorFor(model => model.SOCCCD, new { htmlAttributes = new { @class = "form-control", value = Model.SOCCCD } })
+                </div>
+                <div class="col-md-4">
+                    <label class="col-md-2 col-form-label">Quốc tịch</label>
+                    @Html.EditorFor(model => model.QUOCTICH, new { htmlAttributes = new { @class = "form-control", value = Model.QUOCTICH } })
+                </div>
+            </div>
+            <span style="display: block; margin-top: 32px; font-size: calc(var(--font-size) + 3px); color: var(--text-color)">Danh sách khách hàng lưu trú</span>
+            <hr style="width: 85%" />
+            <table class="table" style="margin-top: -3px; width: 85%">
+                <tr>
+                    <th>
+                        Họ và Tên
+                    </th>
+                    <th>
+                        Số CCCD
+                    </th>
+                    <th>
+                        Ngày sinh
+                    </th>
+                    <th>
+                        Giới tính
+                    </th>
+                    <th>
+                        Quan hệ
+                    </th>
+                </tr>
+                @try
+                {
+
+                    foreach (var item in dskh)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HOTEN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SOCCCD)
+                            </td>
+                            <td>
+                                @String.Format("{0:N0}", @item.NGSINH)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GIOITINH)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.QUANHE)
+                            </td>
+                        </tr>
+                    }
+                }
+                catch { }
+            </table>
+        </div>
+        <div class="container__right" style="position: relative;">
+            <span style="font-size: calc(var(--font-size) + 3px); color: var(--text-color)">Chi tiết</span>
+            <span id="sl-cart" style="border-radius: 50%; background-color: #4e2731; padding: 4px 10px;color: white;font-size: 13px; font-weight: 700; position: absolute; right: 0; top: 3px;  "></span>
+            <hr />
+            <ul style="list-style: none; width: 100%; border: 1px solid #ccc; box-shadow: 0 1px 3px #ccc; border-radius: 6px;  border-bottom: 1px dashed #ccc">
+                @foreach (var i in dsct)
+                {
+                    <li style="display: flex; justify-content: space-between; align-items: center; padding: 6px 12px;">
+                        <div>
+                            <h4>@i.PHONG.TENPH</h4>
+                            <span>Số lượng: 1</span>
+                        </div>
+                        <div style="font-size: 13px">
+                            @(i.CTHD.NGAYNHAN?.ToString("dd/MM/yyyy") ?? "N/A") - @(i.CTHD.NGAYTRA?.ToString("dd/MM/yyyy") ?? "N/A")
+                        </div>
+                        <div id="gia" style="font-size: 16px">@String.Format("{0:N0}", i.CTHD.THANHTIEN)</div>
+                    </li>
+                }
+                @foreach (var i in dsdv)
+                {
+                    <li style="display: flex; justify-content: space-between; align-items: center; padding: 6px 12px;">
+                        <div>
+                            <h4>@i.DICHVU.TENDV</h4>
+                            <span>Số lượng: @i.SOLUONG</span>
+                        </div>
+                        <div id="gia" style="font-size: 16px">@String.Format("{0:N0}", i.SOLUONG * i.DICHVU.GIADV)</div>
+                    </li>
+                }
+            </ul>
+            <ul style="list-style: none; width: 100%; border: 1px solid #ccc; box-shadow: 0 1px 3px #ccc; border-radius: 6px; margin-top: -6px;  border-top: 1px dashed #ccc;">
+                <li style="display: flex; justify-content: space-between; align-items: center; padding: 6px 12px;">
+                    <h4>Tổng thành tiền</h4>
+                    <h4 id="tongTien" style="font-size: 16px">0</h4>
+                </li>
+            </ul>
+            @if(tb != null)
+            {
+            <div style="margin: 16px 45px; width: 100%">
+                <span style="font-size: 16px; color: red;">@tb</span>
+            </div>
+            }
+            @using (Html.BeginForm("XacNhanThanhToan", "Home", FormMethod.Post))
+            {
+                if (hd != null)
+                {
+                    <div style="margin: 16px 45px; width: 100%">
+                        <div class="row mb-2">
+                            <div class="col-md-5">
+                                <label class="col-md-2 col-form-label">Đã trả</label>
+                                <input id="datra" class="form-control" value="@hd.DATRA" type="number" />
+                            </div>
+                            <div class="col-md-5">
+                                <label class="col-md-2 col-form-label">Còn lại</label>
+                                <input id="conlai" class="form-control" value="@(hd.TONGTIEN - hd.DATRA)" />
+                                <input name="mahd" class="form-control1" value="@hd.MAHD" hidden />
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div style="margin: 16px 45px; width: 100%">
+                    <div class="col-md-5">
+                        <label class="col-md-2 col-form-label">Nhập số tiền thanh toán</label>
+                        <input name="tientra" class="form-control1" value="0" required style="width: 200%;" />
+                    </div>
+                </div>
+                <div style="margin: 16px 0;">
+                    @if (ViewBag.luu != 1)
+                    {
+                        <select class="form-select" id="pt" name="pt">
+                            <option selected>--Chọn phương thức thanh toán--</option>
+                            @foreach (var i in pttt)
+                            {
+                                <option value="@i.MAPT">@i.TENPT</option>
+                            }
+                        </select>
+                    }
+                    else
+                    {
+                        <input class="form-control" value="@hd.PHUONGTHUCTHANHTOAN.TENPT" />
+                    }
+                </div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                    @if (ViewBag.luu != 1)
+                    {
+                        <a href="/Home/LuuHoaDon" id="luuhoadon" class="btn1 btn--normal">Lưu hoá đơn</a>
+                    }
+                    else
+                    {
+                        <a href="/Home/NhanTraHuyPhong?mahd=@hd.MAHD" class="btn1 btn--normal">Nhận / trả phòng</a>
+                    }
+                        <button type="submit" class="btn1 btn--primary">Thanh toán</button>
+                    @if (ViewBag.luu == 1 && hd.TINHTRANG == "Đã thanh toán")
+                    {
+                        <a href="/Home/InHoaDon?mahd=@hd.MAHD" target="_blank" class="btn1 btn--normal">In hoá đơn</a>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function tinhTong() {
+        var giaElements = document.querySelectorAll('#gia');
+        var tongTien = 0;
+        giaElements.forEach(function (element) {
+            var gia = parseFloat(element.innerText.replace(/,/g, '').trim());
+            if (!isNaN(gia)) {
+                tongTien += gia;
+            }
+        });
+
+        document.getElementById('tongTien').innerText = tongTien.toLocaleString();
+    }
+    tinhTong();
+
+    var sl = @ViewBag.sl;
+    document.getElementById('sl-cart').innerText = sl;
+    var input = document.querySelectorAll('.form-control');
+    input.forEach((item, index) => {
+        item.setAttribute('readonly', 'readonly');
+    });
+
+    const selectPT = document.querySelector('#pt');
+    selectPT.onchange = function () {
+        const selectedOption = selectPT.options[selectPT.selectedIndex];
+        const mapt = selectedOption.value; // Lấy giá trị của option được chọn
+        document.getElementById('luuhoadon').href = `/Home/LuuHoaDon?mapt=${mapt}`;
+    };
+</script>

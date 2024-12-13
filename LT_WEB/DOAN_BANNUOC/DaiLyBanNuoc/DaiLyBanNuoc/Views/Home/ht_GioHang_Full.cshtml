@@ -1,0 +1,159 @@
+﻿@model IEnumerable<DaiLyBanNuoc.Models.SanPham>
+@using DaiLyBanNuoc.Models
+
+@{
+    ViewBag.Title = "ht_GioHang_Full";
+    Layout = "~/Views/Shared/BN_LayoutPage.cshtml";
+    List<GioHang> giohang = Session["GioHang"] as List<GioHang>;
+}
+<style>
+    /* Đặt toàn bộ bảng */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 16px;
+        text-align: left;
+        background-color: #fff;
+    }
+
+        /* Định dạng hàng tiêu đề */
+    .table th {
+        background-color: #f5f5f5;
+        padding: 10px;
+        font-weight: bold;
+        border-bottom: 2px solid #ddd;
+        text-align: center;
+    }
+
+    /* Định dạng ô dữ liệu */
+    .table td {
+        padding: 15px;
+        vertical-align: middle;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* Căn chỉnh ảnh sản phẩm */
+    .table td img {
+        width: 80px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    /* Định dạng cột "Số lượng" */
+    .table td:nth-child(5) {
+        text-align: center;
+    }
+
+    /* Định dạng giá và số tiền */
+    .table td:nth-child(4),
+    .table td:nth-child(6) {
+        text-align: right;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Định dạng liên kết "Xoá" */
+    .table td a {
+        color: red;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .table td a:hover {
+        text-decoration: underline;
+    }
+
+    /* Định dạng nút tăng/giảm số lượng (nếu thêm sau) */
+    .input-quantity {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .input-quantity input {
+        width: 40px;
+        text-align: center;
+        border: 1px solid #ddd;
+        margin: 0 5px;
+        height: 30px;
+    }
+
+    .input-quantity button {
+        width: 80px;
+        height: 30px;
+        border: 1px solid #ddd;
+        background-color: #f5f5f5;
+        cursor: pointer;
+    }
+
+    .input-quantity button:hover {
+        background-color: #ddd;
+    }
+</style>
+
+<table class="table">
+    <tr>
+        <th>
+            Sản phầm
+        </th>
+        <th>
+        </th>
+        <th>
+            Đơn vị tính
+        </th>
+        <th>
+            Đơn giá
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Số tiền
+        </th>
+        <th>
+            Thao tác
+        </th>
+    </tr>
+
+@foreach (var item in giohang) {
+    <tr>
+        <td>
+            <img src="@item.SP.Anh"/>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SP.TenSP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SP.DonViTinh)
+        </td>
+        <td>
+            @String.Format("{0:N0}", item.SP.GiaBan)
+        </td>
+        <td>
+            <div class="input-quantity">
+                @using (Html.BeginForm("CapNhatSL", "Home", FormMethod.Post))
+                {
+                    <input type="number" value="@item.SL" min="1" name="sl_new" />
+                    <input type="hidden" value="@item.SP.MaSP" name="masp" />
+                    <button class="btn-plus" type="submit">Cập nhật</button>
+                }
+            </div>
+        </td>
+        <td>
+            @String.Format("{0:N0}", item.SP.GiaBan * item.SL)
+        </td>
+        <td>
+            @Html.ActionLink("Chi tiết", "ChiTietSP_1", new { masp = item.SP.MaSP }) |
+            @Html.ActionLink("Xoá", "XoaSP", new { masp = item.SP.MaSP })
+        </td>
+    </tr>
+}
+
+</table>
+
+<a href="/Home/XoaGioHangAll" class="btn btn--primary" style="margin: 0 12px 0 auto;">Xoá tất cả</a>
+<a href="/Home/ThanhToan" class="btn btn--primary" style="margin: 0 0 0 12px;">THANH TOÁN</a>
+

@@ -1,0 +1,112 @@
+﻿@using QL_KHACHSAN.Models
+@{
+    ViewBag.Title = "QL_DatPhong";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+    List<PHONG> dsp = ViewBag.dsp;
+    bool ttc = TempData["themthanhcong"] is true ? true : false;
+    bool xtc = TempData["KQ_XOA_ALL"] is true ? true : false;
+    object kq_tao_hd = TempData["KQ_TAO_HD"];
+    var dshd = Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.dshd);
+}
+
+@if (kq_tao_hd != null)
+{
+    <script>
+        window.onload = function () {
+            showSuccess("Tạo hoá đơn thành công");
+        }</script>
+}
+
+@if (ttc)
+{
+    <script>
+        window.onload = function () {
+            showSuccess("Thêm thành công");
+        }</script>
+}
+
+@if (xtc)
+{
+    <script>
+        window.onload = function () {
+            showSuccess("Xoá thành công");
+        }</script>
+}
+
+<div class="container">
+    <div class="body__datphong" style="display: flex; justify-content: space-between;">
+        <div class="base-frame datphong-loc" style="width: 20%;">
+            <h5 class="tieude-loc">Loại phòng</h5>
+            <ul class="_ht">
+                @Html.Action("ht_LoaiPhong", "Home")
+            </ul>
+        </div>
+        <div class="base-frame dathphong-show" style="margin-left: 12px; width:100%; position: relative;">
+            <input id="kh" class="form-control-lg txtTim" type="text" placeholder="Nhập mã hoá đơn hoặc tên để tìm" aria-label="default input example" onkeyup="showSuggestions(this.value)" style="width: 350px; position: absolute; top: -35px;">
+            <ul id="suggestions" style="list-style: none; position: absolute; top: 0; left: 0; width: 350px; background: white; border: 1px solid #ccc; padding: 0; display: none; font-size: 14px; z-index: 9;"></ul>
+            <ul style="list-style: none; display: flex; position: absolute; right: 0; top: -32px">
+                <li style="margin: 6px">
+                    <img class="img-status" src="~/assest/img/Green_icon.png" style="margin-top: -4px" />
+                    <span>Phòng trống</span>
+                </li>
+                <li style="margin: 6px">
+                    <img class="img-status" src="~/assest/img/Red_icon.png" style="margin-top: -4px" />
+                    <span>Phòng đang sử dụng / bảo trì</span>
+                </li>
+            </ul>
+            @Html.Action("ht_Tang", new { dsp = dsp })
+        </div>
+    </div>
+
+    <a href="/Home/ds_Cho" class="giohang" style="position: fixed; bottom: 30px; right: 30px; text-decoration: none;">
+        <img src="~/assest/img/cart.png" style="width: 60px" />
+        <span style="border-radius: 50%; background-color: #4e2731; padding: 4px 10px;color: white;font-size: 13px; font-weight: 700; position: absolute; top: -8px; right: -8px;">@Html.Action("GioHang")</span>
+    </a>
+</div>
+
+<script>
+    const customer = JSON.parse('@Html.Raw(dshd)');
+
+    const customers = customer.map(customer =>
+        `${customer}`
+    );
+
+    function showSuggestions(query) {
+        const suggestionBox = document.getElementById("suggestions");
+        suggestionBox.innerHTML = ""; // Xóa gợi ý cũ
+        if (!query) {
+            suggestionBox.style.display = "none";
+            return;
+        }
+
+        // Lọc kết quả
+        const matches = customers.filter(customer =>
+            customer.toLowerCase().includes(query.toLowerCase())
+        );
+
+        // Tạo danh sách gợi ý
+        matches.forEach(match => {
+            const li = document.createElement("li");
+            li.style.padding = "0";
+            const a = document.createElement("a");
+            a.textContent = match;
+            a.href = `/Home/ThanhToan?mahd=${match}`;
+            a.style.display = "block";
+            a.style.padding = "10px";
+            a.style.textDecoration = "none";
+            a.style.color = "black";
+            a.style.cursor = "pointer";
+            li.appendChild(a)
+
+            // Gán giá trị vào ô input khi chọn
+            li.onclick = function () {
+                document.querySelector(".txtTim").value = match;
+                document.getElementById('submit').href = `/Home/ThanhToan?hd=${match}`;
+                suggestionBox.style.display = "none";
+            };
+
+            suggestionBox.appendChild(li);
+        });
+        suggestionBox.style.display = matches.length ? "block" : "none";
+    }
+</script>

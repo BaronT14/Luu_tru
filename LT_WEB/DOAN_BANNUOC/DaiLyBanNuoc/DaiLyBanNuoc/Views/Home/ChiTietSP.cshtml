@@ -1,0 +1,76 @@
+﻿@model IEnumerable<DaiLyBanNuoc.Models.SanPham>
+@using DaiLyBanNuoc.Models
+@{
+    ViewBag.Title = "ChiTietSP";
+    Layout = "~/Views/Shared/BN_LayoutPage.cshtml";
+    string sx = (Session["sx"] != null) ? Session["sx"] as string : "Giá";
+    List<SanPham> dssp = ViewBag.dssp as List<SanPham>;
+    string het = null;
+    if (Session["Het"] != null)
+    {
+        het = "Sản phẩm - " + TempData["Het"] as string + " - đã hết hàng";
+        Session["Het"] = null;
+    }
+
+}
+
+@if(het != null)
+{
+    <script>alert('@het')</script>
+}
+
+<style>
+    .home-product-item__rate {
+        padding: 0 0px 8px;
+    }
+</style>
+
+<div class="grid__column-2">
+    <nav class="category">
+        <h3 class="category__heading">Danh mục</h3>
+        <ul class="category-list">
+            @Html.Action("DanhMuc_Loai")
+        </ul>
+    </nav>
+</div>
+
+<div class="grid__column-10">
+    <div class="home-filter">
+        <span class="home-filter__label">Sắp xếp theo</span>
+
+        <div class="select-input">
+            <span class="select-input__label">@sx</span>
+            <i class="select-input__icon fa-solid fa-chevron-down"></i>
+            <ul class="select-input__list">
+                <li class="select-input__item">
+                    <a href="/Home/GiaTang" class="select-input__item-link">Giá thấp đến cao</a>
+                </li>
+                <li class="select-input__item">
+                    <a href="/Home/GiaGiam" class="select-input__item-link">Giá cao đến thấp</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="home-product">
+        <div class="grid__row">
+            <!-- product-item -->
+            @foreach (var item in dssp)
+            {
+                <div class="grid__column-2-4">
+                    <a href="/Home/ChiTietSP_1?masp=@item.MaSP" class="home-product-item">
+                        <div class="home-product-item__img" style="background-image: url(@item.Anh);"></div>
+                        <h4 class="home-product-item__name">@item.TenSP</h4>
+                        <div class="home-product-item__price-wrap">
+                            <span class="home-product-item__price-unit">đ</span>
+                            <span class="home-product-item__price">@String.Format("{0:N0}", item.GiaBan)</span>
+                        </div>
+                        <div class="home-product-item__rate">
+                            <a href="/Home/ThemGioHang?masp=@item.MaSP" class="btn btn--primary" style="width:100%;">Thêm giỏ hàng</a>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

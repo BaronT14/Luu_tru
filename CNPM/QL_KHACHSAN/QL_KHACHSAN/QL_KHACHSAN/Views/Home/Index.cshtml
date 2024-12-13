@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+    int dnmoi = Session["newDN"] is int ? (int)Session["newDN"] : 0;
+}
+
+<div class="container">
+    <div class="grid">
+        <div class="slide"><img src="https://khachsanhunglong.com/upload/hinhanh/han1279-15387318005_1440x746.jpg" alt=""></div>
+        <div class="container__box-search-wrap" style="top: -450px;">
+            <div class="container__box-search">
+                <div class="box-search__header">
+                    <h3>Chào mừng đến với trang quản lý khách sạn</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (dnmoi == 1)
+{
+    <script>
+        window.onload = function () {
+            showSuccess();
+        }
+    </script>
+    Session["newDN"] = null;
+}

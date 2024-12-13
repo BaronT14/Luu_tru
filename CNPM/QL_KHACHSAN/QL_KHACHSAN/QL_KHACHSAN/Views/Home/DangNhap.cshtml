@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/QLKS_LayoutPage.cshtml";
+    int dnmoi = Session["newDN"] is int ? (int)Session["newDN"] : 0;
+}
+
+<div class="container">
+    <div class="grid wide"></div>
+</div>
+<div class="modal" style="display: flex">
+    <div class="modal__overlay"></div>
+    <div class="modal__body">
+        <div class="auth-form">
+            <div class="auth-form__container">
+                <div class="auth-form__header">
+                    <h3 class="auth-form__heading">Đăng nhập</h3>
+                </div>
+                @using (Html.BeginForm())
+                {
+                    <div class="auth-form__group">
+                        <input type="Text" class="auth-form__input" name="tendn" placeholder="Nhập tên đăng  nhập">
+                    </div>
+                    <div class="auth-form__group">
+                        <input type="password" class="auth-form__input" name="mk" placeholder="Nhập mật khẩu">
+                    </div>
+                    <div class="auth-form__controls">
+                        <button type="submit" class="btn1 btn--primary">ĐĂNG NHẬP</button>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (dnmoi == -1)
+{
+    <script>
+        window.onload = function () {
+            showDanger();
+        }</script>
+}
+
+<script src="~/assest/js/main.js">
+</script>
+
